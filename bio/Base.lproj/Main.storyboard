@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,46 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showtimeCell" rowHeight="174" id="D7d-tD-qO4" customClass="ShowtimeCell" customModule="bio" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="174"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showtimeCell" rowHeight="22" id="D7d-tD-qO4" customClass="ShowtimeCell" customModule="bio" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="22"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D7d-tD-qO4" id="ki8-Vo-1ZO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="22"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9L2-os-RYN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="173.5"/>
-                                        </imageView>
-                                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6L-IE-Lu0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BpH-do-kEq">
-                                            <rect key="frame" x="143" y="20" width="89" height="134"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="BpH-do-kEq" secondAttribute="height" multiplier="2:3" id="tCK-ah-y1c"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="9L2-os-RYN" firstAttribute="leading" secondItem="ki8-Vo-1ZO" secondAttribute="leading" id="8Co-qA-QaW"/>
-                                        <constraint firstAttribute="bottom" secondItem="BpH-do-kEq" secondAttribute="bottom" constant="20" id="Asq-ZW-OyJ"/>
-                                        <constraint firstItem="BpH-do-kEq" firstAttribute="centerX" secondItem="9L2-os-RYN" secondAttribute="centerX" id="CHQ-To-KIG"/>
-                                        <constraint firstItem="9L2-os-RYN" firstAttribute="top" secondItem="ki8-Vo-1ZO" secondAttribute="top" id="FME-yv-bwD"/>
-                                        <constraint firstAttribute="trailing" secondItem="9L2-os-RYN" secondAttribute="trailing" id="IGK-cN-4mh"/>
-                                        <constraint firstItem="L6L-IE-Lu0" firstAttribute="top" secondItem="ki8-Vo-1ZO" secondAttribute="top" id="Iki-m6-6AR"/>
-                                        <constraint firstAttribute="bottom" secondItem="9L2-os-RYN" secondAttribute="bottom" id="SDS-t7-lFy"/>
-                                        <constraint firstItem="BpH-do-kEq" firstAttribute="centerY" secondItem="9L2-os-RYN" secondAttribute="centerY" id="VnK-Oc-0cg"/>
-                                        <constraint firstItem="L6L-IE-Lu0" firstAttribute="leading" secondItem="ki8-Vo-1ZO" secondAttribute="leading" id="d0H-Rv-tyb"/>
-                                        <constraint firstAttribute="bottom" secondItem="L6L-IE-Lu0" secondAttribute="bottom" id="ovz-mq-BlV"/>
-                                        <constraint firstItem="BpH-do-kEq" firstAttribute="top" secondItem="ki8-Vo-1ZO" secondAttribute="top" constant="20" id="yLb-ro-jZs"/>
-                                        <constraint firstAttribute="trailing" secondItem="L6L-IE-Lu0" secondAttribute="trailing" id="zCP-fm-l0L"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="backdropView" destination="9L2-os-RYN" id="tS4-3Y-SSR"/>
-                                    <outlet property="posterView" destination="BpH-do-kEq" id="B9x-87-kpG"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+import AlamofireImage
 
 class ShowtimeTableViewController: UITableViewController {
 
@@ -15,9 +15,8 @@ class ShowtimeTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.bioGray
-        tableView.dataSource = self
-        tableView.delegate = self
+        tableView.backgroundColor = UIColor.bioGray
+        tableView.register(ShowtimeCell.self, forCellReuseIdentifier: "showtimeCell")
         fetchData()
     }
 
@@ -38,15 +37,14 @@ class ShowtimeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.bounds.width / 1.78
+        return tableView.bounds.width * (9.0 / 16.0)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "showtimeCell", for: indexPath) as? ShowtimeCell else { return UITableViewCell()}
+        let cell = (tableView.dequeueReusableCell(withIdentifier: "showtimeCell", for: indexPath) as? ShowtimeCell) ?? ShowtimeCell()
         if let movies = movies {
             let movie = movies[indexPath.row]
-            cell.backdropView.kf.setImage(with: movie.backdrop)
-            cell.posterView.kf.setImage(with: movie.poster)
+            cell.displayMovie(movie)
         }
         return cell
     }

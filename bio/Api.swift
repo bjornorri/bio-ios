@@ -16,10 +16,10 @@ class Api {
 
     class func getShowtimes(handler: @escaping ([Movie]) -> Void) {
         let url = "\(baseURL)/showtimes"
-        Alamofire.request(url).responseJSON { response in
+        Alamofire.request(url).responseData { response in
             if let data = response.result.value {
-                let json = JSON(data)
-                let movies = Movie.fromJSON(json: json)
+                let json = try? JSON(data: data)
+                let movies = Movie.fromJSON(json: json!)
                 handler(movies)
             }
         }
