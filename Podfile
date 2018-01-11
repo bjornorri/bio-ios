@@ -7,6 +7,7 @@ target 'bio' do
 
   # Pods for bio
   pod 'Alamofire', '~> 4.5'
+  pod 'Kingfisher', '~> 4.0'
   pod 'SwiftyJSON'
 
 end
