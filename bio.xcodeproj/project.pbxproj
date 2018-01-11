@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		838A32B1A1BF0A11DA98562B /* Pods_bio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B61A8761547772B04CBED26 /* Pods_bio.framework */; };
+		986E22442008220B00C5FC29 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E22432008220B00C5FC29 /* Utilities.swift */; };
 		98BCEED22007CC950014A521 /* ShowtimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BCEED12007CC950014A521 /* ShowtimeCell.swift */; };
 		98BCEED42007CF420014A521 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BCEED32007CF420014A521 /* Extensions.swift */; };
 		98BDA58C20078FE900A26A40 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BDA58B20078FE900A26A40 /* Api.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		3B61A8761547772B04CBED26 /* Pods_bio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		794112E55412391B1CA68A2E /* Pods-bio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bio.release.xcconfig"; path = "Pods/Target Support Files/Pods-bio/Pods-bio.release.xcconfig"; sourceTree = "<group>"; };
+		986E22432008220B00C5FC29 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		98BCEED12007CC950014A521 /* ShowtimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowtimeCell.swift; sourceTree = "<group>"; };
 		98BCEED32007CF420014A521 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		98BDA58B20078FE900A26A40 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				98E68B392007899900C55173 /* AppDelegate.swift */,
 				98BDA58B20078FE900A26A40 /* Api.swift */,
 				98BCEED32007CF420014A521 /* Extensions.swift */,
+				986E22432008220B00C5FC29 /* Utilities.swift */,
 				98BDA58F200793FB00A26A40 /* Models */,
 				98BDA58A20078F8B00A26A40 /* Showtimes */,
 				98E68B3D2007899900C55173 /* Main.storyboard */,
@@ -213,16 +216,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-bio/Pods-bio-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
+				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -255,6 +258,7 @@
 			files = (
 				98BDA58E2007928F00A26A40 /* ShowtimeTableViewController.swift in Sources */,
 				98BCEED42007CF420014A521 /* Extensions.swift in Sources */,
+				986E22442008220B00C5FC29 /* Utilities.swift in Sources */,
 				98BDA58C20078FE900A26A40 /* Api.swift in Sources */,
 				98BDA591200794F900A26A40 /* Movie.swift in Sources */,
 				98E68B3A2007899900C55173 /* AppDelegate.swift in Sources */,

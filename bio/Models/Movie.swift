@@ -27,7 +27,7 @@ class Movie: NSObject {
         imdbId = json["imdb_id"].string
         let posterURL = json["poster"].string
         poster = posterURL != nil ? URL(string: posterURL!) : nil
-        let backdropURL = json["backdrop"].stringValue
-        backdrop = backdropURL != nil ? URL(string: backdropURL) : nil
+        let backdropURL = json["backdrop"].string
+        backdrop = backdropURL != nil ? URL(string: backdropURL!) : nil
     }
 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+import Imaginary
 import SnapKit
 
 class ShowtimeCell: UITableViewCell {
@@ -16,10 +16,16 @@ class ShowtimeCell: UITableViewCell {
     let posterView = UIImageView()
     let overlay = UIView()
 
+    var movie: Movie!
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
         setupConstraints()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func setupViews() {
@@ -55,12 +61,16 @@ class ShowtimeCell: UITableViewCell {
         }
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     func displayMovie(_ movie: Movie) {
-        backdropView.kf.setImage(with: movie.backdrop)
-        posterView.kf.setImage(with: movie.poster)
+        contentView.layoutIfNeeded()
+        let displayer = SimpleImageViewDisplayer()
+        if let backdrop = movie.backdrop {
+            let preprocessor = ResizeImageProcessor(size: backdropView.bounds.size)
+            backdropView.setImage(url: backdrop, option: Option(imagePreprocessor: preprocessor, imageDisplayer: displayer))
+        }
+        if let poster = movie.poster {
+            let preprocessor = ResizeImageProcessor(size: posterView.bounds.size)
+            posterView.setImage(url: poster, option: Option(imagePreprocessor: preprocessor, imageDisplayer: displayer))
+        }
     }
 }

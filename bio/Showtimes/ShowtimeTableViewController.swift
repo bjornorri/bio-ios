@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AlamofireImage
+
 
 class ShowtimeTableViewController: UITableViewController {
 
