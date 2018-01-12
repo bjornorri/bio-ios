@@ -16,6 +16,7 @@ class ShowtimeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = UIColor.bioGray
+        tableView.separatorStyle = .none
         tableView.register(ShowtimeCell.self, forCellReuseIdentifier: "showtimeCell")
         fetchData()
     }
