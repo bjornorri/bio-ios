@@ -55,6 +55,7 @@
 				794112E55412391B1CA68A2E /* Pods-bio.release.xcconfig */,
 			);
 			name = Pods;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		98BDA58A20078F8B00A26A40 /* Showtimes */ = {
@@ -62,6 +63,7 @@
 			children = (
 				98BDA58D2007928F00A26A40 /* ShowtimeTableViewController.swift */,
 				98BCEED12007CC950014A521 /* ShowtimeCell.swift */,
+				6D796DFEDB61495A7848489B /* Pods */,
 			);
 			path = Showtimes;
 			sourceTree = "<group>";
@@ -79,7 +81,6 @@
 			children = (
 				98E68B382007899900C55173 /* bio */,
 				98E68B372007899900C55173 /* Products */,
-				6D796DFEDB61495A7848489B /* Pods */,
 				FBBDC065E4BA10FD53B0E062 /* Frameworks */,
 			);
 			sourceTree = "<group>";

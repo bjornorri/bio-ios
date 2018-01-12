@@ -15,10 +15,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = ShowtimeTableViewController()
-        window?.makeKeyAndVisible()
+        setRootViewController()
         return true
+    }
+
+    func setRootViewController() {
+        let navVC = UINavigationController()
+        navVC.navigationBar.barTintColor = UIColor.bioGray
+        navVC.navigationBar.tintColor = UIColor.white
+        navVC.navigationBar.isTranslucent = false
+        navVC.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+        navVC.setViewControllers([ShowtimeTableViewController()], animated: false)
+        window?.rootViewController = navVC
+        window?.makeKeyAndVisible()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

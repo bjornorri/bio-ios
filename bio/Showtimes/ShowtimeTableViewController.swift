@@ -15,6 +15,7 @@ class ShowtimeTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Sýningar"
         tableView.backgroundColor = UIColor.bioGray
         tableView.separatorStyle = .none
         tableView.register(ShowtimeCell.self, forCellReuseIdentifier: "showtimeCell")
