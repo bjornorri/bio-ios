@@ -13,11 +13,13 @@ import SnapKit
 
 class ShowtimeCell: MMParallaxCell {
 
+    var movie: Movie!
+
     var backdropView: UIImageView!
     let posterView = UIImageView()
     let overlay = UIView()
 
-    var movie: Movie!
+    let titleLabel = UILabel()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -41,9 +43,15 @@ class ShowtimeCell: MMParallaxCell {
 
         overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
 
+        titleLabel.textColor = UIColor.white
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.textAlignment = .right
+        titleLabel.numberOfLines = 2
+
         backdropView.addSubview(overlay)
         contentView.addSubview(backdropView)
         contentView.addSubview(posterView)
+        contentView.addSubview(titleLabel)
     }
 
     func setupConstraints() {
@@ -56,12 +64,16 @@ class ShowtimeCell: MMParallaxCell {
             make.bottom.equalTo(contentView).offset(-20)
             make.width.equalTo(posterView.snp.height).multipliedBy(2.0 / 3.0)
         }
+        titleLabel.snp.makeConstraints() { make in
+            make.top.equalTo(contentView).offset(20)
+            make.right.equalTo(contentView).offset(-8)
+            make.left.equalTo(posterView.snp.right).offset(32)
+        }
     }
 
     func displayMovie(_ movie: Movie) {
-        layoutIfNeeded()
-        contentView.layoutIfNeeded()
         backdropView.kf.setImage(with: movie.backdrop)
         posterView.kf.setImage(with: movie.poster)
+        titleLabel.text = movie.title
     }
 }
