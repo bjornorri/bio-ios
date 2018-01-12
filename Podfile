@@ -7,7 +7,7 @@ target 'bio' do
 
   # Pods for bio
   pod 'Alamofire', '~> 4.5'
-  pod 'Imaginary'
+  pod 'Kingfisher'
   pod 'MMParallaxCell'
   pod 'SnapKit', '~> 4.0'
   pod 'SwiftyJSON'

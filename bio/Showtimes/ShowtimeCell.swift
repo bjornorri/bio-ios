@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Imaginary
+import Kingfisher
 import MMParallaxCell
 import SnapKit
 
@@ -61,7 +61,7 @@ class ShowtimeCell: MMParallaxCell {
     func displayMovie(_ movie: Movie) {
         layoutIfNeeded()
         contentView.layoutIfNeeded()
-        backdropView.setImage(url: movie.backdrop)
-        posterView.setImage(url: movie.poster)
+        backdropView.kf.setImage(with: movie.backdrop)
+        posterView.kf.setImage(with: movie.poster)
     }
 }
