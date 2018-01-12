@@ -44,7 +44,7 @@ class ShowtimeCell: MMParallaxCell {
         overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
 
         titleLabel.textColor = UIColor.white
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.font = UIFont(name: "MyriadPro-BoldCond", size: 22)
         titleLabel.textAlignment = .right
         titleLabel.numberOfLines = 2
 
