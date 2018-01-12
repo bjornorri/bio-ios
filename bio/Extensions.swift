@@ -21,7 +21,6 @@ extension UIColor {
 extension UIImage {
 
     func resize(toSize newSize: CGSize) -> (UIImage) {
-
         let newRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height).integral
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
         let context = UIGraphicsGetCurrentContext()
@@ -41,5 +40,15 @@ extension UIImage {
         UIGraphicsEndImageContext()
 
         return newImage
+    }
+}
+
+extension View {
+
+    func setImage(url: URL?) {
+        guard let url = url else { return }
+        let preprocessor = ResizeImageProcessor(size: bounds.size)
+        let displayer = SimpleImageViewDisplayer()
+        setImage(url: url, option: Option(imagePreprocessor: preprocessor, imageDisplayer: displayer))
     }
 }

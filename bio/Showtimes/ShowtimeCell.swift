@@ -63,14 +63,7 @@ class ShowtimeCell: UITableViewCell {
 
     func displayMovie(_ movie: Movie) {
         contentView.layoutIfNeeded()
-        let displayer = SimpleImageViewDisplayer()
-        if let backdrop = movie.backdrop {
-            let preprocessor = ResizeImageProcessor(size: backdropView.bounds.size)
-            backdropView.setImage(url: backdrop, option: Option(imagePreprocessor: preprocessor, imageDisplayer: displayer))
-        }
-        if let poster = movie.poster {
-            let preprocessor = ResizeImageProcessor(size: posterView.bounds.size)
-            posterView.setImage(url: poster, option: Option(imagePreprocessor: preprocessor, imageDisplayer: displayer))
-        }
+        backdropView.setImage(url: movie.backdrop)
+        posterView.setImage(url: movie.poster)
     }
 }
