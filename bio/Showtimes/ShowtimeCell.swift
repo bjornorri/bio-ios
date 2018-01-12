@@ -8,11 +8,12 @@
 
 import UIKit
 import Imaginary
+import MMParallaxCell
 import SnapKit
 
-class ShowtimeCell: UITableViewCell {
+class ShowtimeCell: MMParallaxCell {
 
-    let backdropView = UIImageView()
+    var backdropView: UIImageView!
     let posterView = UIImageView()
     let overlay = UIView()
 
@@ -20,6 +21,8 @@ class ShowtimeCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backdropView = parallaxImage
+        parallaxRatio = 1.25
         setupViews()
         setupConstraints()
     }
@@ -36,9 +39,6 @@ class ShowtimeCell: UITableViewCell {
         posterView.contentMode = .scaleAspectFill
         posterView.clipsToBounds = true
 
-        backdropView.contentMode = .scaleAspectFill
-        backdropView.clipsToBounds = true
-
         overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
 
         backdropView.addSubview(overlay)
@@ -47,9 +47,6 @@ class ShowtimeCell: UITableViewCell {
     }
 
     func setupConstraints() {
-        backdropView.snp.makeConstraints() { make in
-            make.edges.equalTo(contentView)
-        }
         overlay.snp.makeConstraints() { make in
             make.edges.equalTo(backdropView)
         }
@@ -62,6 +59,7 @@ class ShowtimeCell: UITableViewCell {
     }
 
     func displayMovie(_ movie: Movie) {
+        layoutIfNeeded()
         contentView.layoutIfNeeded()
         backdropView.setImage(url: movie.backdrop)
         posterView.setImage(url: movie.poster)
