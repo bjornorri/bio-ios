@@ -45,7 +45,7 @@ class ShowtimeCell: MMParallaxCell {
 
         titleLabel.textColor = UIColor.white
         titleLabel.font = UIFont(name: "MyriadPro-BoldCond", size: 22)
-        titleLabel.textAlignment = .right
+        titleLabel.textAlignment = .left
         titleLabel.numberOfLines = 2
 
         backdropView.addSubview(overlay)
@@ -67,7 +67,7 @@ class ShowtimeCell: MMParallaxCell {
         titleLabel.snp.makeConstraints() { make in
             make.top.equalTo(contentView).offset(20)
             make.right.equalTo(contentView).offset(-8)
-            make.left.equalTo(posterView.snp.right).offset(32)
+            make.left.equalTo(posterView.snp.right).offset(16)
         }
     }
 
