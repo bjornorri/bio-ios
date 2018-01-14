@@ -50,4 +50,11 @@ class ShowtimeTableViewController: UITableViewController {
         }
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let movies = movies else { return }
+        let detailVC = ShowtimeDetailViewController()
+        detailVC.movie = movies[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
