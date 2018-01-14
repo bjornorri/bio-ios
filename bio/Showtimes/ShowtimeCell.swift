@@ -17,7 +17,6 @@ class ShowtimeCell: MMParallaxCell {
 
     var backdropView: UIImageView!
     let posterView = UIImageView()
-    let overlay = UIView()
 
     let titleLabel = UILabel()
 
@@ -35,30 +34,26 @@ class ShowtimeCell: MMParallaxCell {
     }
 
     func setupViews() {
-        contentView.backgroundColor = UIColor.bioGray
+        contentView.backgroundColor = UIColor.black
+
+        backdropView.alpha = 0.5
 
         posterView.layer.borderColor = UIColor.white.withAlphaComponent(0.7).cgColor
         posterView.layer.borderWidth = 1.0
         posterView.contentMode = .scaleAspectFill
         posterView.clipsToBounds = true
 
-        overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-
         titleLabel.textColor = UIColor.white
         titleLabel.font = UIFont(name: "MyriadPro-BoldCond", size: 22)
         titleLabel.textAlignment = .left
         titleLabel.numberOfLines = 2
 
-        backdropView.addSubview(overlay)
         contentView.addSubview(backdropView)
         contentView.addSubview(posterView)
         contentView.addSubview(titleLabel)
     }
 
     func setupConstraints() {
-        overlay.snp.makeConstraints() { make in
-            make.edges.equalTo(backdropView)
-        }
         posterView.snp.makeConstraints() { make in
             make.top.equalTo(contentView).offset(20)
             make.left.equalTo(contentView).offset(16)
