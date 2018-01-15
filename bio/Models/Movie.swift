@@ -16,6 +16,7 @@ class Movie: NSObject {
     let poster: URL?
     let backdrop: URL?
     let imdbRating: String?
+    let plot: String?
 
     class func fromJSON(json: JSON) -> [Movie] {
         return json.arrayValue.map() { movieJSON in
@@ -31,5 +32,6 @@ class Movie: NSObject {
         let backdropURL = json["backdrop"].string
         backdrop = backdropURL != nil ? URL(string: backdropURL!) : nil
         imdbRating = json["ratings"].dictionary?["imdb"]?.string
+        plot = json["plot"].string
     }
 }

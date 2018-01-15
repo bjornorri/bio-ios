@@ -21,3 +21,13 @@ extension UIFont {
 
     static let myriadBoldCond = UIFont(name: "MyriadPro-BoldCond", size: 17)!
 }
+
+extension UIImageView {
+
+    func stylePosterView() {
+        layer.borderColor = UIColor.white.withAlphaComponent(0.7).cgColor
+        layer.borderWidth = 1.0
+        contentMode = .scaleAspectFill
+        clipsToBounds = true
+    }
+}

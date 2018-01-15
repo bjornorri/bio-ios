@@ -42,10 +42,7 @@ class ShowtimeCell: MMParallaxCell {
         backdropView.alpha = 0.5
 
         // Poster
-        posterView.layer.borderColor = UIColor.white.withAlphaComponent(0.7).cgColor
-        posterView.layer.borderWidth = 1.0
-        posterView.contentMode = .scaleAspectFill
-        posterView.clipsToBounds = true
+        posterView.stylePosterView()
 
         // Title
         titleLabel.textColor = UIColor.white

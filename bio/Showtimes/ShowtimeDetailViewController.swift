@@ -20,12 +20,17 @@ class ShowtimeDetailViewController: UITableViewController {
     }
 
     func displayMovie() {
+        // Navigation title
         title = movie.title
+
+        // Background
         let backgroundView = UIImageView()
-        backgroundView.alpha = 0.5
+        backgroundView.alpha = 0.3
         backgroundView.contentMode = .scaleAspectFill
         backgroundView.kf.setImage(with: movie.backdrop)
         tableView.backgroundView = backgroundView
 
+        // TableView header
+        tableView.tableHeaderView = MovieView(movie: movie)
     }
 }
