@@ -16,3 +16,8 @@ extension UIColor {
 
     static let bioGray = UIColor(red: 31, green: 31, blue: 31)
 }
+
+extension UIFont {
+
+    static let myriadBoldCond = UIFont(name: "MyriadPro-BoldCond", size: 17)!
+}
