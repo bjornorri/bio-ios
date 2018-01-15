@@ -75,5 +75,6 @@ class MovieView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         infoView.textContainer.exclusionPaths = [UIBezierPath(rect: posterView.bounds.insetBy(dx: -8, dy: -4).offsetBy(dx: 8, dy: 4))]
+        infoView.setNeedsUpdateConstraints()
     }
 }
