@@ -38,7 +38,7 @@ class MovieView: UIView {
 
         // Info
         infoView.textColor = UIColor.white
-        infoView.font = UIFont.systemFont(ofSize: 14)
+        infoView.font = UIFont.systemFont(ofSize: 13)
         infoView.backgroundColor = UIColor.clear
         infoView.isScrollEnabled = false
         infoView.textContainerInset = UIEdgeInsets.zero
@@ -47,25 +47,23 @@ class MovieView: UIView {
 
         var info = [String]()
         if let genres = movie.genres {
-            let title = "Flokkur"
-            let string = "\(title): \(genres.joined(separator: ", "))"
+            let string = "Flokkur: \(genres.joined(separator: ", "))"
             info.append(string)
         }
         if let directors = movie.directors {
-            let title = "Leikstjóri"
-            let string = "\(title): \(directors.joined(separator: ", "))"
+            let string = "Leikstjóri: \(directors.joined(separator: ", "))"
             info.append(string)
         }
         if let actors = movie.actors {
-            let title = "Leikarar"
-            let string = "\(title): \(actors.joined(separator: ", "))"
+            let string = "Leikarar: \(actors.joined(separator: ", "))"
             info.append(string)
         }
         if let plot = movie.plot {
             let string = "\n\(plot)"
             info.append(string)
         }
-        infoView.text = info.joined(separator: "\n")
+        let infoString = info.joined(separator: "\n").attributedInfoString()
+        infoView.attributedText = infoString
 
         // Add subviews
         addSubview(posterView)

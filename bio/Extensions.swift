@@ -31,3 +31,17 @@ extension UIImageView {
         clipsToBounds = true
     }
 }
+
+extension String {
+
+    func attributedInfoString() -> NSAttributedString {
+        let aString = NSMutableAttributedString(string: self, attributes: [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 13)])
+        self.enumerateSubstrings(in: startIndex ..< endIndex, options: .byWords) { sub, range, enclosingRange, _ in
+            let substring = self[enclosingRange]
+            if substring.hasSuffix(": ") {
+                aString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 14), range: NSRange(range, in: self))
+            }
+        }
+        return aString
+    }
+}
