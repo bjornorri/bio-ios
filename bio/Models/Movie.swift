@@ -22,6 +22,7 @@ class Movie: NSObject {
     let directors: [String]?
     let actors: [String]?
     let duration: Int?
+    let showtimes: [Schedule]?
 
     class func fromJSON(json: JSON) -> [Movie] {
         return json.arrayValue.map() { movieJSON in
@@ -41,5 +42,6 @@ class Movie: NSObject {
         directors = json["directors"].array?.flatMap({ $0.string })
         actors = json["actors"].array?.flatMap({ $0.string })
         duration = json["durationMinutes"].int
+        showtimes = json["showtimes"].array?.flatMap({ Schedule.fromJSON($0) })
     }
 }

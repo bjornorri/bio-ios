@@ -18,6 +18,7 @@ class ShowtimeDetailViewController: UITableViewController {
         super.viewDidLoad()
         tableView.backgroundColor = UIColor.black
         tableView.separatorStyle = .none
+        tableView.rowHeight = UITableViewAutomaticDimension
         displayMovie()
     }
 
@@ -36,6 +37,14 @@ class ShowtimeDetailViewController: UITableViewController {
         let movieView = MovieView(movie: movie)
         movieView.delegate = self
         tableView.tableHeaderView = movieView
+    }
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
     }
 }
 
