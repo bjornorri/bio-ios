@@ -13,6 +13,7 @@ class MovieView: UIView {
     var movie: Movie!
 
     let posterView = UIImageView()
+    let playButton = UIButton()
     let infoView = UITextView()
 
     override init(frame: CGRect) {
@@ -35,6 +36,15 @@ class MovieView: UIView {
         // Poster
         posterView.stylePosterView()
         posterView.kf.setImage(with: movie.poster)
+
+        // Play button
+        playButton.layer.borderColor = UIColor.white.cgColor
+        playButton.tintColor = UIColor.white
+        playButton.clipsToBounds = true
+        playButton.layer.borderWidth = 2.0
+        playButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        playButton.setImage(UIImage(named: "play_arrow")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        playButton.addTarget(self, action: #selector(didPressPlayButton), for: .touchUpInside)
 
         // Info
         infoView.textColor = UIColor.white
@@ -66,8 +76,9 @@ class MovieView: UIView {
         infoView.attributedText = infoString
 
         // Add subviews
-        addSubview(posterView)
         addSubview(infoView)
+        addSubview(posterView)
+        addSubview(playButton)
     }
 
     func setupConstraints() {
@@ -83,6 +94,13 @@ class MovieView: UIView {
             make.left.equalToSuperview().offset(16)
             make.bottom.lessThanOrEqualToSuperview().offset(-20)
         }
+        // Play button
+        playButton.snp.makeConstraints() { make in
+            make.width.equalTo(posterView).multipliedBy(0.6)
+            make.height.equalTo(playButton.snp.width)
+            make.center.equalTo(posterView)
+        }
+
         // Info
         infoView.snp.makeConstraints() { make in
             make.top.equalTo(posterView)
@@ -94,7 +112,11 @@ class MovieView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        playButton.layer.cornerRadius = playButton.frame.width / 2.0
         infoView.textContainer.exclusionPaths = [UIBezierPath(rect: posterView.bounds.insetBy(dx: -8, dy: -4).offsetBy(dx: 8, dy: 4))]
         infoView.setNeedsUpdateConstraints()
+    }
+
+    @objc func didPressPlayButton() {
     }
 }
