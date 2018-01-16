@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navVC = UINavigationController()
         navVC.navigationBar.barTintColor = UIColor.bioGray
         navVC.navigationBar.tintColor = UIColor.white
+        navVC.navigationBar.barStyle = .blackTranslucent
         navVC.navigationBar.isTranslucent = false
         navVC.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
 
