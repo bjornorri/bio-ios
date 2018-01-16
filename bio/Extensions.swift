@@ -44,4 +44,9 @@ extension String {
         }
         return aString
     }
+
+    func toURL() -> URL? {
+        let encoded = self.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? self
+        return URL(string: encoded)
+    }
 }

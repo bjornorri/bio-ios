@@ -32,10 +32,8 @@ class Movie: NSObject {
     init(json: JSON) {
         title = json["title"].string
         imdbId = json["imdb_id"].string
-        let posterURL = json["poster"].string
-        poster = posterURL != nil ? URL(string: posterURL!) : nil
-        let backdropURL = json["backdrop"].string
-        backdrop = backdropURL != nil ? URL(string: backdropURL!) : nil
+        poster = json["poster"].string?.toURL()
+        backdrop = json["backdrop"].string?.toURL()
         trailerId = json["trailer"].dictionary?["key"]?.string
         imdbRating = json["ratings"].dictionary?["imdb"]?.string
         plot = json["plot"].string
