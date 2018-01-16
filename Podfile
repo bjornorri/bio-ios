@@ -11,5 +11,6 @@ target 'bio' do
   pod 'MMParallaxCell'
   pod 'SnapKit', '~> 4.0'
   pod 'SwiftyJSON'
+  pod 'XCDYouTubeKit', '~> 2.5'
 
 end

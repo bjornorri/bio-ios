@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol MovieViewDelegate {
+    func playTrailer()
+}
+
 class MovieView: UIView {
 
     var movie: Movie!
+    var delegate: MovieViewDelegate!
 
     let posterView = UIImageView()
     let playButton = UIButton()
@@ -44,6 +49,7 @@ class MovieView: UIView {
         playButton.layer.borderWidth = 2.0
         playButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         playButton.setImage(UIImage(named: "play_arrow")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        playButton.isHidden = movie.trailerId == nil
         playButton.addTarget(self, action: #selector(didPressPlayButton), for: .touchUpInside)
 
         // Info
@@ -118,5 +124,6 @@ class MovieView: UIView {
     }
 
     @objc func didPressPlayButton() {
+        delegate.playTrailer()
     }
 }

@@ -15,6 +15,7 @@ class Movie: NSObject {
     let imdbId: String?
     let poster: URL?
     let backdrop: URL?
+    let trailerId: String?
     let imdbRating: String?
     let plot: String?
     let genres: [String]?
@@ -35,6 +36,7 @@ class Movie: NSObject {
         poster = posterURL != nil ? URL(string: posterURL!) : nil
         let backdropURL = json["backdrop"].string
         backdrop = backdropURL != nil ? URL(string: backdropURL!) : nil
+        trailerId = json["trailer"].dictionary?["key"]?.string
         imdbRating = json["ratings"].dictionary?["imdb"]?.string
         plot = json["plot"].string
         genres = json["genres"].array?.flatMap({ $0.string })
