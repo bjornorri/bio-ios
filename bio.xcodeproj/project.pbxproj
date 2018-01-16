@@ -61,7 +61,7 @@
 				794112E55412391B1CA68A2E /* Pods-bio.release.xcconfig */,
 			);
 			name = Pods;
-			path = ../..;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		922035FEDEEC464EF1ABBE4C /* Pods */ = {
@@ -88,7 +88,6 @@
 				9849B7C0200C1A49003DC853 /* ShowtimeDetailViewController.swift */,
 				98BCEED12007CC950014A521 /* ShowtimeCell.swift */,
 				9849B7C2200C2CE0003DC853 /* MovieView.swift */,
-				6D796DFEDB61495A7848489B /* Pods */,
 			);
 			path = Showtimes;
 			sourceTree = "<group>";
@@ -128,6 +127,7 @@
 				98BDA58F200793FB00A26A40 /* Models */,
 				98BDA58A20078F8B00A26A40 /* Showtimes */,
 				98E68B402007899900C55173 /* Assets.xcassets */,
+				6D796DFEDB61495A7848489B /* Pods */,
 				98B98BE9200942E1007009A4 /* Fonts */,
 				98E68B422007899900C55173 /* LaunchScreen.storyboard */,
 				98E68B452007899900C55173 /* Info.plist */,
