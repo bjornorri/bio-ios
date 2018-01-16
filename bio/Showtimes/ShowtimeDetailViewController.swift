@@ -19,7 +19,14 @@ class ShowtimeDetailViewController: UITableViewController {
         tableView.backgroundColor = UIColor.black
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         displayMovie()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.setNeedsLayout()
+        tableView.layoutIfNeeded()
     }
 
     func displayMovie() {
@@ -40,11 +47,16 @@ class ShowtimeDetailViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return movie.showtimes?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let schedule = movie.showtimes?[section] else { return nil }
+        return CinemaHeader(schedule: schedule)
     }
 }
 

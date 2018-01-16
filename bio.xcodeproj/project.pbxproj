@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		838A32B1A1BF0A11DA98562B /* Pods_bio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B61A8761547772B04CBED26 /* Pods_bio.framework */; };
+		9811E5BD200E79D4003F54EC /* CinemaHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9811E5BC200E79D4003F54EC /* CinemaHeader.swift */; };
 		98227633200E49DB00839E4D /* CinemaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98227632200E49DB00839E4D /* CinemaCell.swift */; };
 		98227635200E4DEC00839E4D /* Screening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98227634200E4DEC00839E4D /* Screening.swift */; };
 		98227637200E4F7F00839E4D /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98227636200E4F7F00839E4D /* Schedule.swift */; };
@@ -28,6 +29,7 @@
 		3B61A8761547772B04CBED26 /* Pods_bio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A17475041786E60A319C148 /* Pods-bio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bio/Pods-bio.debug.xcconfig"; sourceTree = "<group>"; };
 		794112E55412391B1CA68A2E /* Pods-bio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bio.release.xcconfig"; path = "Pods/Target Support Files/Pods-bio/Pods-bio.release.xcconfig"; sourceTree = "<group>"; };
+		9811E5BC200E79D4003F54EC /* CinemaHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaHeader.swift; sourceTree = "<group>"; };
 		98227632200E49DB00839E4D /* CinemaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaCell.swift; sourceTree = "<group>"; };
 		98227634200E4DEC00839E4D /* Screening.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screening.swift; sourceTree = "<group>"; };
 		98227636200E4F7F00839E4D /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				98BCEED12007CC950014A521 /* ShowtimeCell.swift */,
 				9849B7C0200C1A49003DC853 /* ShowtimeDetailViewController.swift */,
 				9849B7C2200C2CE0003DC853 /* MovieView.swift */,
+				9811E5BC200E79D4003F54EC /* CinemaHeader.swift */,
 				98227632200E49DB00839E4D /* CinemaCell.swift */,
 			);
 			path = Showtimes;
@@ -294,6 +297,7 @@
 				98BDA58E2007928F00A26A40 /* ShowtimeTableViewController.swift in Sources */,
 				98BCEED42007CF420014A521 /* Extensions.swift in Sources */,
 				98227637200E4F7F00839E4D /* Schedule.swift in Sources */,
+				9811E5BD200E79D4003F54EC /* CinemaHeader.swift in Sources */,
 				98227635200E4DEC00839E4D /* Screening.swift in Sources */,
 				9849B7C1200C1A49003DC853 /* ShowtimeDetailViewController.swift in Sources */,
 				98BDA58C20078FE900A26A40 /* Api.swift in Sources */,
