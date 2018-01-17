@@ -21,7 +21,7 @@ class Schedule: NSObject {
     }
 
     class func fromJSON(_ json: JSON) -> Schedule? {
-        guard let cinema = json["cinema"].dictionary?["name"]?.string else { return nil }
+        guard let cinema = json["cinema_name"].string else { return nil }
         let screenings = Screening.fromJSON(json["schedule"])
         if screenings.isEmpty { return nil }
         return Schedule(cinema: cinema, screenings: screenings)

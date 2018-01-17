@@ -50,3 +50,12 @@ extension String {
         return URL(string: encoded)
     }
 }
+
+extension Date {
+
+    func timeString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: self)
+    }
+}

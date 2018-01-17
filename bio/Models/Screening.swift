@@ -13,23 +13,30 @@ class Screening: NSObject {
 
     var time: Date!
     var purchaseURL: URL?
+    var room: String?
+    var three_d: Bool!
+    var icelandic: Bool!
 
-    convenience init(time: Date!, purchaseURL: URL?) {
+    convenience init(time: Date!, purchaseURL: URL?, room: String?, three_d: Bool!, icelandic: Bool!) {
         self.init()
         self.time = time
         self.purchaseURL = purchaseURL
+        self.room = room
+        self.three_d = three_d
+        self.icelandic = icelandic
     }
 
     class func fromJSON(_ json: JSON) -> [Screening] {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
         let screenings = json.array?.flatMap() { j -> Screening? in
-            guard let string = j["time"].string, let substr = string.split(separator: " ").first else { return nil }
-
-            let timeString = String(substr)
-            guard let time = formatter.date(from: timeString) else { return nil }
+            guard let timeString = j["time"].string, let time = formatter.date(from: timeString) else { return nil }
             let url = j["purchase_url"].string
-            return Screening(time: time, purchaseURL: url?.toURL())
+            let room = j["room"].string
+            let three_d = j["three_d"].bool ?? false
+            let icelandic = j["icelandic"].bool ?? false
+            let screening = Screening(time: time, purchaseURL: url?.toURL(), room: room, three_d: three_d, icelandic: icelandic)
+            return screening
         }
         return screenings ?? []
     }
