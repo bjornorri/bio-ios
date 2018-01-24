@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navVC.navigationBar.barStyle = .blackTranslucent
         navVC.navigationBar.isTranslucent = false
         navVC.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navVC.navigationBar.isHidden = true
 
         window = UIWindow(frame: UIScreen.main.bounds)
         navVC.setViewControllers([ShowtimeTableViewController()], animated: false)
