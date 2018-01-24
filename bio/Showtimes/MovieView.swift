@@ -17,6 +17,7 @@ class MovieView: UIView {
     var movie: Movie!
     var delegate: MovieViewDelegate!
 
+    let titleLabel = UILabel()
     let posterView = UIImageView()
     let playButton = UIButton()
     let infoView = UITextView()
@@ -38,6 +39,13 @@ class MovieView: UIView {
     }
 
     func setupViews() {
+        // Title
+        titleLabel.textColor = UIColor.white
+        titleLabel.font = UIFont.myriadBoldCond.withSize(22)
+        titleLabel.textAlignment = .left
+        titleLabel.numberOfLines = 2
+        titleLabel.text = movie.title
+
         // Poster
         posterView.stylePosterView()
         posterView.kf.setImage(with: movie.poster)
@@ -84,6 +92,7 @@ class MovieView: UIView {
         // Add subviews
         addSubview(infoView)
         addSubview(posterView)
+        addSubview(titleLabel)
         addSubview(playButton)
     }
 
@@ -100,6 +109,12 @@ class MovieView: UIView {
             make.left.equalToSuperview().offset(16)
             make.bottom.lessThanOrEqualToSuperview().offset(-20)
         }
+        // Title
+        titleLabel.snp.makeConstraints() { make in
+            make.top.equalTo(posterView)
+            make.left.equalTo(posterView.snp.right).offset(16)
+            make.right.equalToSuperview().offset(-8)
+        }
         // Play button
         playButton.snp.makeConstraints() { make in
             make.width.equalTo(posterView).multipliedBy(0.6)
@@ -109,7 +124,7 @@ class MovieView: UIView {
 
         // Info
         infoView.snp.makeConstraints() { make in
-            make.top.equalTo(posterView)
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
             make.left.equalTo(posterView)
             make.right.equalToSuperview().offset(-8)
             make.bottom.lessThanOrEqualToSuperview().offset(-20)
@@ -119,7 +134,9 @@ class MovieView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         playButton.layer.cornerRadius = playButton.frame.width / 2.0
-        infoView.textContainer.exclusionPaths = [UIBezierPath(rect: posterView.bounds.insetBy(dx: -8, dy: -4).offsetBy(dx: 8, dy: 4))]
+        var rect = infoView.frame.intersection(posterView.frame)
+        rect.origin = CGPoint.zero
+        infoView.textContainer.exclusionPaths = [UIBezierPath(rect: rect.insetBy(dx: -8, dy: -4).offsetBy(dx: 8, dy: 4))]
         infoView.setNeedsUpdateConstraints()
     }
 
