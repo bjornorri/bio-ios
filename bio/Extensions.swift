@@ -58,4 +58,8 @@ extension Date {
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: self)
     }
+
+    func isPast() -> Bool {
+        return self.compare(Date()) == .orderedAscending
+    }
 }

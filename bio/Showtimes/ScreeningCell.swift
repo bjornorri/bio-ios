@@ -26,11 +26,12 @@ class ScreeningCell: UICollectionViewCell {
 
     func setupViews() {
         button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.gray.withAlphaComponent(0.8), for: .disabled)
         button.contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
-        button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 4
         button.clipsToBounds = true
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         contentView.addSubview(button)
     }
 
@@ -43,6 +44,13 @@ class ScreeningCell: UICollectionViewCell {
 
     func displayScreening(_ screening: Screening) {
         button.setTitle(screening.time.timeString(), for: .normal)
+        if !screening.time.isPast() {
+            button.isEnabled = true
+            button.layer.borderColor = UIColor.white.cgColor
+        } else {
+            button.isEnabled = false
+            button.layer.borderColor = UIColor.gray.withAlphaComponent(0.8).cgColor
+        }
         contentView.setNeedsLayout()
     }
 }
