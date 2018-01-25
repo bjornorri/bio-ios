@@ -16,8 +16,10 @@ class ShowtimeDetailViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(ScheduleCell.self, forCellReuseIdentifier: "scheduleCell")
         tableView.backgroundColor = UIColor.black
         tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         displayMovie()
@@ -51,12 +53,19 @@ class ShowtimeDetailViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let schedule = movie.showtimes?[section] else { return nil }
         return CinemaHeader(schedule: schedule)
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let screenings = movie.showtimes?[indexPath.section].screenings else { return UITableViewCell(frame: CGRect.zero) }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath) as! ScheduleCell
+        cell.displayScreenings(screenings)
+        return cell
     }
 }
 
@@ -83,3 +92,4 @@ extension ShowtimeDetailViewController: MovieViewDelegate {
         }
     }
 }
+
