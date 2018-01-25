@@ -44,7 +44,7 @@ class ScheduleCell: UITableViewCell {
     func setupConstraints() {
         collectionView.snp.makeConstraints() { make in
             make.top.equalToSuperview().offset(8)
-            make.bottom.equalToSuperview().offset(-8)
+            make.bottom.equalToSuperview().offset(-20)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-8)
         }
@@ -53,14 +53,13 @@ class ScheduleCell: UITableViewCell {
     func displayScreenings(_ screenings: [Screening]) {
         self.screenings = screenings
         collectionView.reloadData()
-        contentView.setNeedsLayout()
     }
 
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         collectionView.layoutIfNeeded()
         var size = collectionView.collectionViewLayout.collectionViewContentSize
         // Fix for margins
-        size.height += 24
+        size.height += 36
         size.width -= 16
         return size
     }

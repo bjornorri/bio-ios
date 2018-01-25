@@ -19,6 +19,7 @@ class ShowtimeDetailViewController: UITableViewController {
         tableView.register(ScheduleCell.self, forCellReuseIdentifier: "scheduleCell")
         tableView.backgroundColor = UIColor.black
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
@@ -46,6 +47,11 @@ class ShowtimeDetailViewController: UITableViewController {
         let movieView = MovieView(movie: movie)
         movieView.delegate = self
         tableView.tableHeaderView = movieView
+
+        // TableView
+        tableView.setNeedsLayout()
+        tableView.layoutIfNeeded()
+        tableView.reloadData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

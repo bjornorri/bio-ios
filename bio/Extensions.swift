@@ -56,6 +56,7 @@ extension Date {
     func timeString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
+        formatter.timeZone = TimeZone(abbreviation: "GMT")
         return formatter.string(from: self)
     }
 
