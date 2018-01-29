@@ -7,6 +7,7 @@ target 'bio' do
 
   # Pods for bio
   pod 'Alamofire', '~> 4.5'
+  pod 'GradientLoadingBar', :git => 'https://github.com/bjornorri/GradientLoadingBar.git'
   pod 'Kingfisher'
   pod 'MMParallaxCell'
   pod 'SnapKit', '~> 4.0'

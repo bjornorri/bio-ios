@@ -1,6 +1,7 @@
 PODS:
-  - Alamofire (4.5.1)
-  - Kingfisher (4.3.1)
+  - Alamofire (4.6.0)
+  - GradientLoadingBar (1.1.9)
+  - Kingfisher (4.6.1)
   - MMParallaxCell (1.2)
   - SnapKit (4.0.0)
   - SwiftyJSON (4.0.0)
@@ -8,20 +9,31 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
+  - GradientLoadingBar (from `https://github.com/bjornorri/GradientLoadingBar.git`)
   - Kingfisher
   - MMParallaxCell
   - SnapKit (~> 4.0)
   - SwiftyJSON
   - XCDYouTubeKit (~> 2.5)
 
+EXTERNAL SOURCES:
+  GradientLoadingBar:
+    :git: https://github.com/bjornorri/GradientLoadingBar.git
+
+CHECKOUT OPTIONS:
+  GradientLoadingBar:
+    :commit: 8f87e46b83dff3444e1c1673b2026d49bc60f01b
+    :git: https://github.com/bjornorri/GradientLoadingBar.git
+
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  Kingfisher: 75541c4b62f02e1fde6f9772303de3d9ebe8f5b3
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  GradientLoadingBar: 82d33086e86cad5093cca159d24fddd589c91a6d
+  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   MMParallaxCell: 9c9045097743b725076c38ed2c53e3790e90bd14
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   XCDYouTubeKit: dccfe0c17dd5c5187969ec27e93069573badb08f
 
-PODFILE CHECKSUM: e9ccb01bdfef51e40391efe787b3f41a3f7e3441
+PODFILE CHECKSUM: aa0480c689bfa400a148a2db19984bad610e9c8c
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

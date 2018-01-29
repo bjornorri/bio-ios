@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import GradientLoadingBar
 
 class ShowtimeTableViewController: UITableViewController {
 
@@ -23,9 +23,11 @@ class ShowtimeTableViewController: UITableViewController {
     }
 
     func fetchData() {
+        GradientLoadingBar.shared.show()
         Api.getShowtimes() { movies in
             self.movies = movies
             self.tableView.reloadData()
+            GradientLoadingBar.shared.hide()
         }
     }
 
