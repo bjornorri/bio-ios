@@ -82,6 +82,10 @@ class MovieView: UIView {
             let string = "Leikarar: \(actors.joined(separator: ", "))"
             info.append(string)
         }
+        if let duration = movie.duration {
+            let string = "Lengd: \(duration) mín"
+            info.append(string)
+        }
         if let plot = movie.plot {
             let string = "\n\(plot)"
             info.append(string)
