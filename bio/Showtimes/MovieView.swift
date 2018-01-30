@@ -68,10 +68,19 @@ class MovieView: UIView {
         infoView.textContainerInset = UIEdgeInsets.zero
         infoView.textContainer.lineFragmentPadding = 0.0
         infoView.isEditable = false
+        infoView.isSelectable = false
 
         var info = [String]()
         if let genres = movie.genres {
             let string = "Flokkur: \(genres.joined(separator: ", "))"
+            info.append(string)
+        }
+        if let rating = movie.imdbRating {
+            let string = "IMDb: \(rating)"
+            info.append(string)
+        }
+        if let duration = movie.duration {
+            let string = "Lengd: \(duration) mín"
             info.append(string)
         }
         if let directors = movie.directors {
@@ -80,10 +89,6 @@ class MovieView: UIView {
         }
         if let actors = movie.actors {
             let string = "Leikarar: \(actors.joined(separator: ", "))"
-            info.append(string)
-        }
-        if let duration = movie.duration {
-            let string = "Lengd: \(duration) mín"
             info.append(string)
         }
         if let plot = movie.plot {
@@ -125,7 +130,6 @@ class MovieView: UIView {
             make.height.equalTo(playButton.snp.width)
             make.center.equalTo(posterView)
         }
-
         // Info
         infoView.snp.makeConstraints() { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
