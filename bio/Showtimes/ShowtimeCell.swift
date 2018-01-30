@@ -18,8 +18,7 @@ class ShowtimeCell: MMParallaxCell {
     var backdropView: UIImageView!
     let posterView = UIImageView()
     let titleLabel = UILabel()
-    let imdbLogo = UIImageView(image: UIImage(named: "imdb"))
-    let ratingLabel = UILabel()
+    let imdbView = IMDbRatingView()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,17 +49,11 @@ class ShowtimeCell: MMParallaxCell {
         titleLabel.textAlignment = .left
         titleLabel.numberOfLines = 2
 
-        // IMDb
-        imdbLogo.contentMode = .scaleAspectFit
-        ratingLabel.textColor = UIColor.white
-        ratingLabel.font = UIFont.myriadBoldCond.withSize(18)
-
         // Add subviews
         contentView.addSubview(backdropView)
         contentView.addSubview(posterView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(imdbLogo)
-        contentView.addSubview(ratingLabel)
+        contentView.addSubview(imdbView)
     }
 
     func setupConstraints() {
@@ -78,15 +71,9 @@ class ShowtimeCell: MMParallaxCell {
             make.left.equalTo(posterView.snp.right).offset(16)
         }
         // IMDb
-        imdbLogo.snp.makeConstraints() { make in
+        imdbView.snp.makeConstraints() { make in
             make.left.equalTo(titleLabel)
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.height.equalTo(18)
-            make.width.equalTo(imdbLogo.snp.height).multipliedBy(2127.0 / 1024.0)
-        }
-        ratingLabel.snp.makeConstraints() { make in
-            make.left.equalTo(imdbLogo.snp.right).offset(6)
-            make.centerY.equalTo(imdbLogo)
         }
     }
 
@@ -94,6 +81,6 @@ class ShowtimeCell: MMParallaxCell {
         backdropView.kf.setImage(with: movie.backdrop)
         posterView.kf.setImage(with: movie.poster)
         titleLabel.text = movie.title
-        ratingLabel.text = movie.imdbRating
+        imdbView.rating = movie.imdbRating
     }
 }

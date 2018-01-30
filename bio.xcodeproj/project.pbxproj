@@ -13,6 +13,7 @@
 		98227637200E4F7F00839E4D /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98227636200E4F7F00839E4D /* Schedule.swift */; };
 		9849B7C1200C1A49003DC853 /* ShowtimeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849B7C0200C1A49003DC853 /* ShowtimeDetailViewController.swift */; };
 		9849B7C3200C2CE0003DC853 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849B7C2200C2CE0003DC853 /* MovieView.swift */; };
+		989DCC962020BED5003E020C /* IMDbRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989DCC952020BED5003E020C /* IMDbRatingView.swift */; };
 		98B702D62019E96600289F3D /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B702D52019E96600289F3D /* ScheduleCell.swift */; };
 		98B702D82019F42300289F3D /* ScreeningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B702D72019F42300289F3D /* ScreeningCell.swift */; };
 		98B98BEB2009430F007009A4 /* Myriad Pro Bold Condensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98B98BEA2009430F007009A4 /* Myriad Pro Bold Condensed.ttf */; };
@@ -35,6 +36,7 @@
 		98227636200E4F7F00839E4D /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		9849B7C0200C1A49003DC853 /* ShowtimeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowtimeDetailViewController.swift; sourceTree = "<group>"; };
 		9849B7C2200C2CE0003DC853 /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
+		989DCC952020BED5003E020C /* IMDbRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbRatingView.swift; sourceTree = "<group>"; };
 		98B702D52019E96600289F3D /* ScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		98B702D72019F42300289F3D /* ScreeningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreeningCell.swift; sourceTree = "<group>"; };
 		98B98BEA2009430F007009A4 /* Myriad Pro Bold Condensed.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Myriad Pro Bold Condensed.ttf"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				98E68B392007899900C55173 /* AppDelegate.swift */,
 				98BDA58B20078FE900A26A40 /* Api.swift */,
 				98BCEED32007CF420014A521 /* Extensions.swift */,
+				989DCC952020BED5003E020C /* IMDbRatingView.swift */,
 				98BDA58F200793FB00A26A40 /* Models */,
 				98BDA58A20078F8B00A26A40 /* Showtimes */,
 				98E68B402007899900C55173 /* Assets.xcassets */,
@@ -308,6 +311,7 @@
 				9849B7C1200C1A49003DC853 /* ShowtimeDetailViewController.swift in Sources */,
 				98BDA58C20078FE900A26A40 /* Api.swift in Sources */,
 				98BDA591200794F900A26A40 /* Movie.swift in Sources */,
+				989DCC962020BED5003E020C /* IMDbRatingView.swift in Sources */,
 				9849B7C3200C2CE0003DC853 /* MovieView.swift in Sources */,
 				98E68B3A2007899900C55173 /* AppDelegate.swift in Sources */,
 				98B702D62019E96600289F3D /* ScheduleCell.swift in Sources */,
