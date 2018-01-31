@@ -16,6 +16,7 @@ class ShowtimeDetailViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.register(ScheduleCell.self, forCellReuseIdentifier: "scheduleCell")
         tableView.backgroundColor = UIColor.black
         tableView.separatorStyle = .none

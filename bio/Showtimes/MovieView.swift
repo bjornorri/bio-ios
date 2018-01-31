@@ -16,6 +16,7 @@ class MovieView: UIView {
 
     var movie: Movie!
     var delegate: MovieViewDelegate!
+    var collapsed = true
 
     let titleLabel = UILabel()
     let posterView = UIImageView()
@@ -39,6 +40,9 @@ class MovieView: UIView {
     }
 
     func setupViews() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleExpansion))
+        addGestureRecognizer(tapGesture)
+        backgroundColor = UIColor.orange.withAlphaComponent(0.3)
         // Title
         titleLabel.textColor = UIColor.white
         titleLabel.font = UIFont.myriadBoldCond.withSize(22)
@@ -150,5 +154,20 @@ class MovieView: UIView {
 
     @objc func didPressPlayButton() {
         delegate.playTrailer()
+    }
+
+    var a = -20
+
+    @objc func toggleExpansion() {
+        guard let tableView = self.superview as? UITableView else { return }
+        a -= 80
+        tableView.layoutIfNeeded()
+        self.infoView.snp.updateConstraints() { make in
+            make.bottom.lessThanOrEqualToSuperview().offset(self.a)
+        }
+        tableView.beginUpdates()
+//        tableView.setNeedsLayout()
+        tableView.layoutIfNeeded()
+        tableView.endUpdates()
     }
 }
