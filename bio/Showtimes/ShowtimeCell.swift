@@ -16,6 +16,7 @@ class ShowtimeCell: MMParallaxCell {
     var movie: Movie!
 
     var backdropView: UIImageView!
+    let foreground = UIView()
     let posterView = UIImageView()
     let titleLabel = UILabel()
     let imdbView = IMDbRatingView()
@@ -40,6 +41,9 @@ class ShowtimeCell: MMParallaxCell {
         // Backdrop
         backdropView.alpha = 0.5
 
+        // Foreground
+        foreground.backgroundColor = UIColor.clear
+
         // Poster
         posterView.stylePosterView()
 
@@ -50,13 +54,18 @@ class ShowtimeCell: MMParallaxCell {
         titleLabel.numberOfLines = 2
 
         // Add subviews
-        contentView.addSubview(backdropView)
-        contentView.addSubview(posterView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(imdbView)
+        contentView.addSubview(foreground)
+        foreground.addSubview(backdropView)
+        foreground.addSubview(posterView)
+        foreground.addSubview(titleLabel)
+        foreground.addSubview(imdbView)
     }
 
     func setupConstraints() {
+        // Foreground
+        foreground.snp.makeConstraints() { make in
+            make.edges.equalToSuperview()
+        }
         // Poster
         posterView.snp.makeConstraints() { make in
             make.top.equalTo(contentView).offset(20)
