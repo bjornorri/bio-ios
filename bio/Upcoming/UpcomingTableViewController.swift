@@ -45,6 +45,13 @@ class UpcomingTableViewController: UITableViewController {
         return movies[dates[section]]?.count ?? 0
     }
 
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let date = dates?[section] else { return nil }
+        let header = UpcomingHeader()
+        header.displayDate(date)
+        return header
+    }
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.bounds.width * (9.0 / 16.0)
     }
