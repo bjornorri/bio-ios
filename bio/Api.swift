@@ -25,7 +25,7 @@ class Api {
         }
     }
 
-    class func getComingSoon(handler: @escaping ([Movie]) -> Void) {
+    class func getUpcoming(handler: @escaping ([Movie]) -> Void) {
         let url = "\(baseURL)/coming_soon"
         Alamofire.request(url).responseJSON { response in
             if let data = response.result.value {

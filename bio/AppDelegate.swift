@@ -20,17 +20,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setRootViewController() {
-        let navVC = UINavigationController()
-        navVC.navigationBar.barTintColor = UIColor.bioGray
-        navVC.navigationBar.tintColor = UIColor.white
-        navVC.navigationBar.barStyle = .blackTranslucent
-        navVC.navigationBar.isTranslucent = false
-        navVC.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navVC.navigationBar.isHidden = true
+        let showtimesVC = UINavigationController()
+        let upcomingVC = UINavigationController()
+        for navVC in [showtimesVC, upcomingVC] {
+            navVC.navigationBar.barTintColor = UIColor.bioGray
+            navVC.navigationBar.tintColor = UIColor.white
+            navVC.navigationBar.barStyle = .blackTranslucent
+            navVC.navigationBar.isTranslucent = false
+            navVC.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navVC.navigationBar.isHidden = true
+        }
+        showtimesVC.setViewControllers([ShowtimeTableViewController()], animated: false)
+        upcomingVC.setViewControllers([UpcomingTableViewController()], animated: false)
+
+        let tabVC = UITabBarController()
+        tabVC.tabBar.barTintColor = UIColor.bioGray
+        tabVC.tabBar.tintColor = UIColor.white
+        tabVC.setViewControllers([showtimesVC, upcomingVC], animated: false)
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        navVC.setViewControllers([ShowtimeTableViewController()], animated: false)
-        window?.rootViewController = navVC
+        window?.rootViewController = tabVC
         window?.makeKeyAndVisible()
     }
 
