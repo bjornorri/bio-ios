@@ -23,6 +23,7 @@ class Movie: NSObject {
     let actors: [String]?
     let duration: Int?
     let showtimes: [Schedule]?
+    let release_date: Date?
 
     class func fromJSON(json: JSON) -> [Movie] {
         return json.arrayValue.map() { movieJSON in
@@ -43,5 +44,13 @@ class Movie: NSObject {
         actors = json["actors"].array?.flatMap({ $0.string })
         duration = json["durationMinutes"].int
         showtimes = json["showtimes"].array?.flatMap({ Schedule.fromJSON($0) })
+
+        if let dateString = json["release_date"].string {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "YYYY-MM-dd"
+            release_date = formatter.date(from: dateString)
+        } else {
+            release_date = nil
+        }
     }
 }

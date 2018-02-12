@@ -11,7 +11,8 @@ import GradientLoadingBar
 
 class UpcomingTableViewController: UITableViewController {
 
-    var movies: [Movie]?
+    var dates: [Date]?
+    var movies = [Date : [Movie]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,19 +26,23 @@ class UpcomingTableViewController: UITableViewController {
     func fetchData() {
         GradientLoadingBar.shared.show()
         Api.getUpcoming() { movies in
-            self.movies = movies
+            let dates = Set(movies.flatMap({ $0.release_date })).sorted()
+            self.dates = dates
+            for date in dates {
+                self.movies[date] = movies.filter({ $0.release_date == date })
+            }
             self.tableView.reloadData()
             GradientLoadingBar.shared.hide()
         }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return dates?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let movies = movies else { return 0 }
-        return movies.count
+        guard let dates = dates else { return 0 }
+        return movies[dates[section]]?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -46,17 +51,9 @@ class UpcomingTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "showtimeCell", for: indexPath) as? ShowtimeCell) ?? ShowtimeCell()
-        if let movies = movies {
-            let movie = movies[indexPath.row]
+        if let date = dates?[indexPath.section], let movie = movies[date]?[indexPath.row] {
             cell.displayMovie(movie)
         }
         return cell
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let movies = movies else { return }
-        let detailVC = ShowtimeDetailViewController()
-        detailVC.movie = movies[indexPath.row]
-        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
