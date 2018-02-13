@@ -62,6 +62,7 @@ class UpcomingTableViewController: UITableViewController {
         if let date = dates?[indexPath.section], let movie = movies[date]?[indexPath.row] {
             cell.displayMovie(movie)
         }
+        cell.posterView.delegate = self
         return cell
     }
 }

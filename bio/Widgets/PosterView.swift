@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 protocol PosterViewDelegate {
-    func playTrailer()
+    func playTrailer(_ movie: Movie)
 }
 
 class PosterView: UIView {
@@ -77,6 +77,7 @@ class PosterView: UIView {
     }
 
     @objc func didPressPlayButton() {
-        delegate?.playTrailer()
+        guard let movie = movie else { return }
+        delegate?.playTrailer(movie)
     }
 }

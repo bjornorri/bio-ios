@@ -6,7 +6,9 @@
 //  Copyright © 2018 Bjorn Orri Saemundsson. All rights reserved.
 //
 
+import AVKit
 import UIKit
+import XCDYouTubeKit
 
 extension UIColor {
 
@@ -65,3 +67,28 @@ extension Date {
         return self.compare(Date()) == .orderedAscending
     }
 }
+
+extension UIViewController: PosterViewDelegate {
+
+    func playTrailer(_ movie: Movie) {
+        guard let trailerId = movie.trailerId else { return }
+
+        let playerVC = AVPlayerViewController()
+        playerVC.entersFullScreenWhenPlaybackBegins = true
+        playerVC.exitsFullScreenWhenPlaybackEnds = true
+        self.present(playerVC, animated: true)
+
+        let keys: [AnyHashable] = [XCDYouTubeVideoQualityHTTPLiveStreaming, XCDYouTubeVideoQuality.HD720.rawValue, XCDYouTubeVideoQuality.medium360.rawValue, XCDYouTubeVideoQuality.small240.rawValue]
+
+        XCDYouTubeClient.default().getVideoWithIdentifier(trailerId) { [weak playerVC] (video, error) in
+            let streams = keys.map({ video?.streamURLs[$0] }).flatMap({ $0 })
+            if let streamURL = streams.first {
+                playerVC?.player = AVPlayer(url: streamURL)
+                playerVC?.player?.play()
+            } else {
+                playerVC?.dismiss(animated: true)
+            }
+        }
+    }
+}
+
