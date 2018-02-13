@@ -10,7 +10,7 @@ import UIKit
 
 class UpcomingCell: UITableViewCell {
 
-    let posterView = UIImageView()
+    let posterView = PosterView()
     let titleLabel = UILabel()
     let infoLabel = UILabel()
 
@@ -28,9 +28,6 @@ class UpcomingCell: UITableViewCell {
         // Background
         backgroundColor = UIColor.bioGray
         contentView.backgroundColor = UIColor.bioGray
-
-        // Poster
-        posterView.stylePosterView()
 
         // Title
         titleLabel.textColor = UIColor.white
@@ -68,7 +65,7 @@ class UpcomingCell: UITableViewCell {
     }
 
     func displayMovie(_ movie: Movie) {
-        posterView.kf.setImage(with: movie.poster)
+        posterView.movie = movie
         titleLabel.text = movie.title
         infoLabel.attributedText = getAttributedInfoString(forMovie: movie, skipPlot: true)
     }

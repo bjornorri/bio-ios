@@ -16,7 +16,7 @@ class ShowtimeCell: MMParallaxCell {
     var movie: Movie!
 
     var backdropView: UIImageView!
-    let posterView = UIImageView()
+    let posterView = PosterView()
     let titleLabel = UILabel()
     let imdbView = IMDbRatingView()
 
@@ -41,7 +41,7 @@ class ShowtimeCell: MMParallaxCell {
         backdropView.alpha = 0.5
 
         // Poster
-        posterView.stylePosterView()
+        posterView.playHidden = true
 
         // Title
         titleLabel.textColor = UIColor.white
@@ -79,7 +79,7 @@ class ShowtimeCell: MMParallaxCell {
 
     func displayMovie(_ movie: Movie) {
         backdropView.kf.setImage(with: movie.backdrop)
-        posterView.kf.setImage(with: movie.poster)
+        posterView.movie = movie
         titleLabel.text = movie.title
         imdbView.rating = movie.imdbRating
     }

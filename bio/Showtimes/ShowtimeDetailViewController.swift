@@ -45,7 +45,7 @@ class ShowtimeDetailViewController: UITableViewController {
 
         // TableView header
         let movieView = MovieView(movie: movie)
-        movieView.delegate = self
+        movieView.posterView.delegate = self
         tableView.tableHeaderView = movieView
 
         // TableView
@@ -75,7 +75,7 @@ class ShowtimeDetailViewController: UITableViewController {
     }
 }
 
-extension ShowtimeDetailViewController: MovieViewDelegate {
+extension ShowtimeDetailViewController: PosterViewDelegate {
 
     func playTrailer() {
         guard let trailerId = movie.trailerId else { return }

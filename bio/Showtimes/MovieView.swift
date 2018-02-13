@@ -8,18 +8,12 @@
 
 import UIKit
 
-protocol MovieViewDelegate {
-    func playTrailer()
-}
-
 class MovieView: UIView {
 
     var movie: Movie!
-    var delegate: MovieViewDelegate!
 
     let titleLabel = UILabel()
-    let posterView = UIImageView()
-    let playButton = UIButton()
+    let posterView = PosterView()
     let infoView = UITextView()
 
     override init(frame: CGRect) {
@@ -29,7 +23,6 @@ class MovieView: UIView {
     convenience init(movie: Movie) {
         self.init(frame: CGRect.zero)
         self.movie = movie
-        backgroundColor = UIColor.clear
         setupViews()
         setupConstraints()
     }
@@ -39,6 +32,9 @@ class MovieView: UIView {
     }
 
     func setupViews() {
+        // Background
+        backgroundColor = UIColor.clear
+
         // Title
         titleLabel.textColor = UIColor.white
         titleLabel.font = UIFont.myriadBoldCond.withSize(22)
@@ -47,18 +43,7 @@ class MovieView: UIView {
         titleLabel.text = movie.title
 
         // Poster
-        posterView.stylePosterView()
-        posterView.kf.setImage(with: movie.poster)
-
-        // Play button
-        playButton.layer.borderColor = UIColor.white.cgColor
-        playButton.tintColor = UIColor.white
-        playButton.clipsToBounds = true
-        playButton.layer.borderWidth = 2.0
-        playButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        playButton.setImage(UIImage(named: "play_arrow")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        playButton.isHidden = movie.trailerId == nil
-        playButton.addTarget(self, action: #selector(didPressPlayButton), for: .touchUpInside)
+        posterView.movie = movie
 
         // Info
         infoView.textColor = UIColor.white
@@ -75,7 +60,6 @@ class MovieView: UIView {
         addSubview(infoView)
         addSubview(posterView)
         addSubview(titleLabel)
-        addSubview(playButton)
     }
 
     func setupConstraints() {
@@ -97,12 +81,6 @@ class MovieView: UIView {
             make.left.equalTo(posterView.snp.right).offset(16)
             make.right.equalToSuperview().offset(-8)
         }
-        // Play button
-        playButton.snp.makeConstraints() { make in
-            make.width.equalTo(posterView).multipliedBy(0.6)
-            make.height.equalTo(playButton.snp.width)
-            make.center.equalTo(posterView)
-        }
         // Info
         infoView.snp.makeConstraints() { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
@@ -114,14 +92,9 @@ class MovieView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        playButton.layer.cornerRadius = playButton.frame.width / 2.0
         var rect = infoView.frame.intersection(posterView.frame)
         rect.origin = CGPoint.zero
         infoView.textContainer.exclusionPaths = [UIBezierPath(rect: rect.insetBy(dx: -8, dy: -4).offsetBy(dx: 8, dy: 4))]
         infoView.setNeedsUpdateConstraints()
-    }
-
-    @objc func didPressPlayButton() {
-        delegate.playTrailer()
     }
 }
