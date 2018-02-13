@@ -25,7 +25,7 @@ class UpcomingHeader: UIView {
     func setupViews() {
         backgroundColor = UIColor.bioGray
         label.textColor = UIColor.white
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         addSubview(label)
     }
 

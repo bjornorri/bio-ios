@@ -69,34 +69,7 @@ class MovieView: UIView {
         infoView.textContainer.lineFragmentPadding = 0.0
         infoView.isEditable = false
         infoView.isSelectable = false
-
-        var info = [String]()
-        if let genres = movie.genres {
-            let string = "Flokkur: \(genres.joined(separator: ", "))"
-            info.append(string)
-        }
-        if let rating = movie.imdbRating {
-            let string = "IMDb: \(rating)"
-            info.append(string)
-        }
-        if let duration = movie.duration {
-            let string = "Lengd: \(duration) mín"
-            info.append(string)
-        }
-        if let directors = movie.directors {
-            let string = "Leikstjóri: \(directors.joined(separator: ", "))"
-            info.append(string)
-        }
-        if let actors = movie.actors {
-            let string = "Leikarar: \(actors.joined(separator: ", "))"
-            info.append(string)
-        }
-        if let plot = movie.plot {
-            let string = "\n\(plot)"
-            info.append(string)
-        }
-        let infoString = info.joined(separator: "\n").attributedInfoString()
-        infoView.attributedText = infoString
+        infoView.attributedText = getAttributedInfoString(forMovie: movie)
 
         // Add subviews
         addSubview(infoView)

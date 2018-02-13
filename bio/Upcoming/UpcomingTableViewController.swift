@@ -17,9 +17,10 @@ class UpcomingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Væntanlegt"
-        tableView.backgroundColor = UIColor.bioGray
         tableView.separatorStyle = .none
-        tableView.register(ShowtimeCell.self, forCellReuseIdentifier: "showtimeCell")
+        tableView.backgroundColor = UIColor.bioGray
+        tableView.register(UpcomingCell.self, forCellReuseIdentifier: "upcomingCell")
+        tableView.estimatedRowHeight = round(UIScreen.main.bounds.width * (3.0 / 8.0)) + 16
         fetchData()
     }
 
@@ -53,11 +54,11 @@ class UpcomingTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.bounds.width * (9.0 / 16.0)
+        return round(UIScreen.main.bounds.width * (3.0 / 8.0)) + 16
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = (tableView.dequeueReusableCell(withIdentifier: "showtimeCell", for: indexPath) as? ShowtimeCell) ?? ShowtimeCell()
+        let cell = (tableView.dequeueReusableCell(withIdentifier: "upcomingCell", for: indexPath) as? UpcomingCell) ?? UpcomingCell()
         if let date = dates?[indexPath.section], let movie = movies[date]?[indexPath.row] {
             cell.displayMovie(movie)
         }

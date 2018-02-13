@@ -15,6 +15,7 @@ extension UIColor {
     }
 
     static let bioGray = UIColor(red: 31, green: 31, blue: 31)
+    static let bioOrange = UIColor.orange
 }
 
 extension UIFont {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ionicons
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,8 +30,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navVC.navigationBar.isTranslucent = false
             navVC.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
             navVC.navigationBar.isHidden = true
+
+            let statusBarBackground = UIView(frame: UIApplication.shared.statusBarFrame)
+            statusBarBackground.backgroundColor = UIColor.bioGray
+            navVC.view.addSubview(statusBarBackground)
         }
+        showtimesVC.title = "Sýningar"
+        showtimesVC.tabBarItem.image = IonIcons.image(withIcon: ion_ios_videocam, size: 30, color: UIColor.gray)
+        showtimesVC.tabBarItem.selectedImage = IonIcons.image(withIcon: ion_ios_videocam, size: 30, color: UIColor.bioOrange)
         showtimesVC.setViewControllers([ShowtimeTableViewController()], animated: false)
+        upcomingVC.title = "Væntanlegt"
+        upcomingVC.tabBarItem.image = IonIcons.image(withIcon: ion_ios_film, size: 30, color: UIColor.gray)
+        upcomingVC.tabBarItem.selectedImage = IonIcons.image(withIcon: ion_ios_film, size: 30, color: UIColor.bioOrange)
         upcomingVC.setViewControllers([UpcomingTableViewController()], animated: false)
 
         let tabVC = UITabBarController()

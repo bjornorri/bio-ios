@@ -13,6 +13,8 @@
 		98227637200E4F7F00839E4D /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98227636200E4F7F00839E4D /* Schedule.swift */; };
 		9849B7C1200C1A49003DC853 /* ShowtimeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849B7C0200C1A49003DC853 /* ShowtimeDetailViewController.swift */; };
 		9849B7C3200C2CE0003DC853 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849B7C2200C2CE0003DC853 /* MovieView.swift */; };
+		9869092E203305650074B7DD /* UpcomingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9869092D203305650074B7DD /* UpcomingCell.swift */; };
+		989824B62033126F00248F87 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989824B52033126F00248F87 /* Utils.swift */; };
 		989DCC962020BED5003E020C /* IMDbRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989DCC952020BED5003E020C /* IMDbRatingView.swift */; };
 		98A4C19C2030E55200BD8812 /* UpcomingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A4C19B2030E55200BD8812 /* UpcomingTableViewController.swift */; };
 		98B702D62019E96600289F3D /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B702D52019E96600289F3D /* ScheduleCell.swift */; };
@@ -38,6 +40,8 @@
 		98227636200E4F7F00839E4D /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		9849B7C0200C1A49003DC853 /* ShowtimeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowtimeDetailViewController.swift; sourceTree = "<group>"; };
 		9849B7C2200C2CE0003DC853 /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
+		9869092D203305650074B7DD /* UpcomingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingCell.swift; sourceTree = "<group>"; };
+		989824B52033126F00248F87 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		989DCC952020BED5003E020C /* IMDbRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbRatingView.swift; sourceTree = "<group>"; };
 		98A4C19B2030E55200BD8812 /* UpcomingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingTableViewController.swift; sourceTree = "<group>"; };
 		98B702D52019E96600289F3D /* ScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 			children = (
 				98A4C19B2030E55200BD8812 /* UpcomingTableViewController.swift */,
 				98CE2C5520321899001B632E /* UpcomingHeader.swift */,
+				9869092D203305650074B7DD /* UpcomingCell.swift */,
 			);
 			path = Upcoming;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				98E68B392007899900C55173 /* AppDelegate.swift */,
 				98BDA58B20078FE900A26A40 /* Api.swift */,
 				98BCEED32007CF420014A521 /* Extensions.swift */,
+				989824B52033126F00248F87 /* Utils.swift */,
 				989DCC952020BED5003E020C /* IMDbRatingView.swift */,
 				98BDA58F200793FB00A26A40 /* Models */,
 				98BDA58A20078F8B00A26A40 /* Showtimes */,
@@ -278,6 +284,7 @@
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/XCDYouTubeKit/XCDYouTubeKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ionicons/ionicons.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -288,6 +295,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCDYouTubeKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ionicons.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -320,12 +328,14 @@
 				98BCEED42007CF420014A521 /* Extensions.swift in Sources */,
 				98B702D82019F42300289F3D /* ScreeningCell.swift in Sources */,
 				98227637200E4F7F00839E4D /* Schedule.swift in Sources */,
+				9869092E203305650074B7DD /* UpcomingCell.swift in Sources */,
 				9811E5BD200E79D4003F54EC /* CinemaHeader.swift in Sources */,
 				98227635200E4DEC00839E4D /* Screening.swift in Sources */,
 				9849B7C1200C1A49003DC853 /* ShowtimeDetailViewController.swift in Sources */,
 				98BDA58C20078FE900A26A40 /* Api.swift in Sources */,
 				98BDA591200794F900A26A40 /* Movie.swift in Sources */,
 				989DCC962020BED5003E020C /* IMDbRatingView.swift in Sources */,
+				989824B62033126F00248F87 /* Utils.swift in Sources */,
 				98CE2C5620321899001B632E /* UpcomingHeader.swift in Sources */,
 				9849B7C3200C2CE0003DC853 /* MovieView.swift in Sources */,
 				98E68B3A2007899900C55173 /* AppDelegate.swift in Sources */,
