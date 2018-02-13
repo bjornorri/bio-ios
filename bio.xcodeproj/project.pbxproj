@@ -205,6 +205,7 @@
 				98E68B342007899900C55173 /* Resources */,
 				52564B71177027BA8A92B408 /* [CP] Embed Pods Frameworks */,
 				55F4094A9DE707CE3A5DB4CD /* [CP] Copy Pods Resources */,
+				9800AB952033563F00A03623 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -327,6 +328,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-bio/Pods-bio-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9800AB952033563F00A03623 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" e88ef5fff5bc1cf5cee2fe84047effd2d38b79ca 690c8f232bf609c821367365a38462bc62587d6a13b1313e42cd55cfedab0485";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -487,7 +502,7 @@
 				DEVELOPMENT_TEAM = 5762VEA4LK;
 				INFOPLIST_FILE = bio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bjornorri.bio2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bjornorri.bio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -503,7 +518,7 @@
 				DEVELOPMENT_TEAM = 5762VEA4LK;
 				INFOPLIST_FILE = bio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bjornorri.bio2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bjornorri.bio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

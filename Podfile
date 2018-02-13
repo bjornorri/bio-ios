@@ -7,6 +7,8 @@ target 'bio' do
 
   # Pods for bio
   pod 'Alamofire', '~> 4.5'
+  pod 'Crashlytics'
+  pod 'Fabric'
   pod 'GradientLoadingBar', '~> 1.0'
   pod 'ionicons'
   pod 'Kingfisher'
