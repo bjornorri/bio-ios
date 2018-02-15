@@ -18,6 +18,7 @@ class NotificationManager {
     init() {
         NotificationCenter.default.addObserver(forName: .UIApplicationDidBecomeActive, object: nil, queue: nil, using: { notification in
             self.sendToken()
+            UIApplication.shared.applicationIconBadgeNumber = 0
         })
     }
 
