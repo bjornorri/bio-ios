@@ -30,6 +30,7 @@
 		98E68B3A2007899900C55173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E68B392007899900C55173 /* AppDelegate.swift */; };
 		98E68B412007899900C55173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98E68B402007899900C55173 /* Assets.xcassets */; };
 		98E68B442007899900C55173 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98E68B422007899900C55173 /* LaunchScreen.storyboard */; };
+		98E947D72035E44700AB7234 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E947D62035E44700AB7234 /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,8 @@
 		98E68B402007899900C55173 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98E68B432007899900C55173 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98E68B452007899900C55173 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98E947D52035E29800AB7234 /* bio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bio.entitlements; sourceTree = "<group>"; };
+		98E947D62035E44700AB7234 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		A14708D989CDBED02ABB6FA2 /* Pods-bio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bio/Pods-bio.debug.xcconfig"; sourceTree = "<group>"; };
 		AACA68EFA65E12033ACC19B5 /* Pods-bio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bio.release.xcconfig"; path = "Pods/Target Support Files/Pods-bio/Pods-bio.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,8 +170,10 @@
 		98E68B382007899900C55173 /* bio */ = {
 			isa = PBXGroup;
 			children = (
+				98E947D52035E29800AB7234 /* bio.entitlements */,
 				98E68B392007899900C55173 /* AppDelegate.swift */,
 				98BDA58B20078FE900A26A40 /* Api.swift */,
+				98E947D62035E44700AB7234 /* NotificationManager.swift */,
 				98BCEED32007CF420014A521 /* Extensions.swift */,
 				989824B52033126F00248F87 /* Utils.swift */,
 				98BDA58F200793FB00A26A40 /* Models */,
@@ -229,6 +234,11 @@
 					98E68B352007899900C55173 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -352,6 +362,7 @@
 			files = (
 				98BDA58E2007928F00A26A40 /* ShowtimeTableViewController.swift in Sources */,
 				98BCEED42007CF420014A521 /* Extensions.swift in Sources */,
+				98E947D72035E44700AB7234 /* NotificationManager.swift in Sources */,
 				98B702D82019F42300289F3D /* ScreeningCell.swift in Sources */,
 				98227637200E4F7F00839E4D /* Schedule.swift in Sources */,
 				9869092E203305650074B7DD /* UpcomingCell.swift in Sources */,
@@ -498,6 +509,7 @@
 			baseConfigurationReference = A14708D989CDBED02ABB6FA2 /* Pods-bio.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = bio/bio.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5762VEA4LK;
@@ -517,6 +529,7 @@
 			baseConfigurationReference = 794112E55412391B1CA68A2E /* Pods-bio.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = bio/bio.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5762VEA4LK;

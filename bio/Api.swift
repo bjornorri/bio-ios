@@ -35,4 +35,13 @@ class Api {
             }
         }
     }
+
+    class func registerDevice(withId deviceId: String, apnsToken token: String) {
+        let url = "\(baseURL)/device"
+        let data = [
+            "deviceId": deviceId,
+            "apnsToken": token
+        ]
+        Alamofire.request(url, method: .post, parameters: data, encoding: JSONEncoding.default, headers: nil)
+    }
 }
