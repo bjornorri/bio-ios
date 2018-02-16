@@ -48,7 +48,7 @@ class ShowtimeTableViewController: UITableViewController {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "showtimeCell", for: indexPath) as? ShowtimeCell) ?? ShowtimeCell()
         if let movies = movies {
             let movie = movies[indexPath.row]
-            cell.displayMovie(movie)
+            cell.movie = movie
         }
         return cell
     }

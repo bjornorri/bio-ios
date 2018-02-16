@@ -8,55 +8,24 @@
 
 import UIKit
 
-class UpcomingCell: UITableViewCell {
+class UpcomingCell: MovieCell {
 
-    let posterView = PosterView()
-    let titleLabel = UILabel()
     let infoLabel = UILabel()
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupViews()
-        setupConstraints()
-    }
+    override func setupViews() {
+        super.setupViews()
+        
+        backdropView.alpha = 0.3
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func setupViews() {
-        // Background
-        backgroundColor = UIColor.bioGray
-        contentView.backgroundColor = UIColor.bioGray
-
-        // Title
-        titleLabel.textColor = UIColor.white
-        titleLabel.font = UIFont.myriadBoldCond.withSize(20)
-        titleLabel.textAlignment = .left
-        titleLabel.numberOfLines = 1
-
-        // Info
         infoLabel.textColor = UIColor.white
-        infoLabel.font = UIFont.systemFont(ofSize: 13)
+        infoLabel.font = UIFont.systemFont(ofSize: 14)
         infoLabel.numberOfLines = 0
 
-        contentView.addSubview(posterView)
-        contentView.addSubview(titleLabel)
         contentView.addSubview(infoLabel)
     }
 
-    func setupConstraints() {
-        posterView.snp.makeConstraints() { make in
-            make.left.equalToSuperview().offset(8)
-            make.top.equalToSuperview().offset(8)
-            make.bottom.equalToSuperview().offset(-8)
-            make.width.equalTo(posterView.snp.height).multipliedBy(2.0 / 3.0)
-        }
-        titleLabel.snp.makeConstraints() { make in
-            make.top.equalTo(posterView)
-            make.left.equalTo(posterView.snp.right).offset(16)
-            make.right.equalToSuperview().offset(-8)
-        }
+    override func setupConstraints() {
+        super.setupConstraints()
         infoLabel.snp.makeConstraints() { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
             make.left.equalTo(posterView.snp.right).offset(16)
@@ -64,9 +33,8 @@ class UpcomingCell: UITableViewCell {
         }
     }
 
-    func displayMovie(_ movie: Movie) {
-        posterView.movie = movie
-        titleLabel.text = movie.title
+    override func displayMovie() {
+        super.displayMovie()
         infoLabel.attributedText = getAttributedInfoString(forMovie: movie, skipPlot: true)
     }
 }

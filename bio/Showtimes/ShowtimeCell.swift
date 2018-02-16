@@ -11,65 +11,18 @@ import Kingfisher
 import MMParallaxCell
 import SnapKit
 
-class ShowtimeCell: MMParallaxCell {
+class ShowtimeCell: MovieCell {
 
-    var movie: Movie!
-
-    var backdropView: UIImageView!
-    let posterView = PosterView()
-    let titleLabel = UILabel()
     let imdbView = IMDbRatingView()
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .none
-        backdropView = parallaxImage
-        parallaxRatio = 1.25
-        setupViews()
-        setupConstraints()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func setupViews() {
-        // Content view
-        contentView.backgroundColor = UIColor.black
-
-        // Backdrop
-        backdropView.alpha = 0.5
-
-        // Poster
+    override func setupViews() {
+        super.setupViews()
         posterView.playHidden = true
-
-        // Title
-        titleLabel.textColor = UIColor.white
-        titleLabel.font = UIFont.myriadBoldCond.withSize(22)
-        titleLabel.textAlignment = .left
-        titleLabel.numberOfLines = 2
-
-        // Add subviews
-        contentView.addSubview(backdropView)
-        contentView.addSubview(posterView)
-        contentView.addSubview(titleLabel)
         contentView.addSubview(imdbView)
     }
 
-    func setupConstraints() {
-        // Poster
-        posterView.snp.makeConstraints() { make in
-            make.top.equalTo(contentView).offset(20)
-            make.left.equalTo(contentView).offset(16)
-            make.bottom.equalTo(contentView).offset(-20)
-            make.width.equalTo(posterView.snp.height).multipliedBy(2.0 / 3.0)
-        }
-        // Title
-        titleLabel.snp.makeConstraints() { make in
-            make.top.equalTo(contentView).offset(20)
-            make.right.equalTo(contentView).offset(-8)
-            make.left.equalTo(posterView.snp.right).offset(16)
-        }
+    override func setupConstraints() {
+        super.setupConstraints()
         // IMDb
         imdbView.snp.makeConstraints() { make in
             make.left.equalTo(titleLabel)
@@ -77,10 +30,8 @@ class ShowtimeCell: MMParallaxCell {
         }
     }
 
-    func displayMovie(_ movie: Movie) {
-        backdropView.kf.setImage(with: movie.backdrop)
-        posterView.movie = movie
-        titleLabel.text = movie.title
+    override func displayMovie() {
+        super.displayMovie()
         imdbView.rating = movie.imdbRating
     }
 }

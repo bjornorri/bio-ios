@@ -60,7 +60,7 @@ class UpcomingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "upcomingCell", for: indexPath) as? UpcomingCell) ?? UpcomingCell()
         if let date = dates?[indexPath.section], let movie = movies[date]?[indexPath.row] {
-            cell.displayMovie(movie)
+            cell.movie = movie
         }
         cell.posterView.delegate = self
         return cell
