@@ -44,7 +44,7 @@ class MovieCell: MMParallaxCell {
         contentView.backgroundColor = UIColor.black
 
         // Backdrop
-        backdropView.alpha = 0.5
+        backdropView.alpha = 0.3
 
         // Title
         titleLabel.textColor = UIColor.white

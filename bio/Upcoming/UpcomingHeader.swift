@@ -39,13 +39,6 @@ class UpcomingHeader: UIView {
     }
 
     func displayDate(_ date: Date) {
-        if Calendar.current.isDateInTomorrow(date) {
-            label.text = "Á morgun"
-            return
-        }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d. MMMM"
-        formatter.locale = Locale(identifier: "is-IS")
-        label.text = formatter.string(from: date)
+        label.text = date.releaseDateString()
     }
 }

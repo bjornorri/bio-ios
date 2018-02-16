@@ -23,7 +23,8 @@ class Movie: NSObject {
     let actors: [String]?
     let duration: Int?
     let showtimes: [Schedule]?
-    let release_date: Date?
+    let releaseDate: Date?
+    let notify: Bool
 
     class func fromJSON(json: JSON) -> [Movie] {
         return json.arrayValue.map() { movieJSON in
@@ -48,9 +49,11 @@ class Movie: NSObject {
         if let dateString = json["release_date"].string {
             let formatter = DateFormatter()
             formatter.dateFormat = "YYYY-MM-dd"
-            release_date = formatter.date(from: dateString)
+            releaseDate = formatter.date(from: dateString)
         } else {
-            release_date = nil
+            releaseDate = nil
         }
+
+        notify = json["notify"].bool ?? false
     }
 }

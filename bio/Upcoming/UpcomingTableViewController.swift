@@ -11,8 +11,7 @@ import GradientLoadingBar
 
 class UpcomingTableViewController: UITableViewController {
 
-    var dates: [Date]?
-    var movies = [Date : [Movie]]()
+    var movies: [Movie]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,30 +26,18 @@ class UpcomingTableViewController: UITableViewController {
     func fetchData() {
         GradientLoadingBar.shared.show()
         Api.getUpcoming() { movies in
-            let dates = Set(movies.flatMap({ $0.release_date })).sorted()
-            self.dates = dates
-            for date in dates {
-                self.movies[date] = movies.filter({ $0.release_date == date })
-            }
+            self.movies = movies
             self.tableView.reloadData()
             GradientLoadingBar.shared.hide()
         }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return dates?.count ?? 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let dates = dates else { return 0 }
-        return movies[dates[section]]?.count ?? 0
-    }
-
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let date = dates?[section] else { return nil }
-        let header = UpcomingHeader()
-        header.displayDate(date)
-        return header
+        return movies?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -59,7 +46,8 @@ class UpcomingTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "upcomingCell", for: indexPath) as? UpcomingCell) ?? UpcomingCell()
-        if let date = dates?[indexPath.section], let movie = movies[date]?[indexPath.row] {
+        if let movies = movies {
+            let movie = movies[indexPath.row]
             cell.movie = movie
         }
         cell.posterView.delegate = self

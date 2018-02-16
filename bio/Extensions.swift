@@ -63,6 +63,13 @@ extension Date {
         return formatter.string(from: self)
     }
 
+    func releaseDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d. MMMM"
+        formatter.locale = Locale(identifier: "is-IS")
+        return formatter.string(from: self)
+    }
+
     func isPast() -> Bool {
         return self.compare(Date()) == .orderedAscending
     }

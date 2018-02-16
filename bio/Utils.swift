@@ -11,6 +11,10 @@ import Foundation
 func getAttributedInfoString(forMovie movie: Movie, skipPlot: Bool = false) -> NSAttributedString {
 
     var info = [String]()
+    if let releaseDate = movie.releaseDate {
+        let string = "Frumsýnd: \(releaseDate.releaseDateString())"
+        info.append(string)
+    }
     if let genres = movie.genres {
         let string = "Flokkur: \(genres.joined(separator: ", "))"
         info.append(string)
