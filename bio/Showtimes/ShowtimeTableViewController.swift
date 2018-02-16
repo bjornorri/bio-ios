@@ -57,6 +57,6 @@ class ShowtimeTableViewController: UITableViewController {
         guard let movies = movies else { return }
         let detailVC = ShowtimeDetailViewController()
         detailVC.movie = movies[indexPath.row]
-        navigationController?.pushViewController(detailVC, animated: true)
+        show(detailVC, sender: nil)
     }
 }

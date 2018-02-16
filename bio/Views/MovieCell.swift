@@ -79,4 +79,18 @@ class MovieCell: MMParallaxCell {
         posterView.movie = movie
         titleLabel.text = movie.title
     }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: 0.2) {
+                self.backdropView.alpha = selected ? 0.5 : 0.3
+            }
+        } else {
+            self.backdropView.alpha = selected ? 0.5 : 0.3
+        }
+    }
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        setSelected(highlighted, animated: animated)
+    }
 }

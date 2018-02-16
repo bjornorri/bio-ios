@@ -57,7 +57,24 @@ class UpcomingTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let movie = movies?[indexPath.row] else { return }
-        presentIMDbController(forMovie: movie)
+        showActionSheet(forMovie: movie)
+        self.tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    private func showActionSheet(forMovie movie: Movie) {
+        let actionSheet = UIAlertController(title: movie.title, message: nil, preferredStyle: .actionSheet)
+        let notifyAction = UIAlertAction(title: "Láta mig vita", style: .default, handler: nil)
+        let imdbAction = UIAlertAction(title: "IMDb", style: .default, handler: { _ in
+            self.presentIMDbController(forMovie: movie)
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        actionSheet.addAction(notifyAction)
+        actionSheet.addAction(imdbAction)
+        actionSheet.addAction(cancelAction)
+        // Workaround for action sheet delay.
+        DispatchQueue.main.async {
+            self.present(actionSheet, animated: true, completion: nil)
+        }
     }
 
     private func presentIMDbController(forMovie movie: Movie) {
