@@ -63,9 +63,17 @@ extension Date {
         return formatter.string(from: self)
     }
 
+    func isThisYear() -> Bool {
+        return Calendar.current.component(.year, from: self) == Calendar.current.component(.year, from: Date())
+    }
+
     func releaseDateString() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "d. MMMM"
+        if isThisYear() {
+            formatter.dateFormat = "d. MMMM"
+        } else {
+            formatter.dateFormat = "d. MMMM YYYY"
+        }
         formatter.locale = Locale(identifier: "is-IS")
         return formatter.string(from: self)
     }
