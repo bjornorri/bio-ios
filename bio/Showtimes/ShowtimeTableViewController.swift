@@ -60,3 +60,17 @@ class ShowtimeTableViewController: UITableViewController {
         show(detailVC, sender: nil)
     }
 }
+
+extension ShowtimeTableViewController {
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let statusBarFrame = UIApplication.shared.statusBarFrame
+        guard let cells = tableView.visibleCells as? [MovieCell] else { return }
+        for cell in cells {
+            let cellRect = cell.frame.offsetBy(dx: 0, dy: -tableView.contentOffset.y)
+            let intersection = cellRect.intersection(statusBarFrame)
+            let maskY = intersection.maxY + tableView.contentOffset.y - cell.frame.minY
+            cell.maskY = maskY == CGFloat.infinity ? 0 : maskY
+        }
+    }
+}

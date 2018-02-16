@@ -18,7 +18,7 @@ class ShowtimeCell: MovieCell {
     override func setupViews() {
         super.setupViews()
         posterView.playHidden = true
-        contentView.addSubview(imdbView)
+        foreground.addSubview(imdbView)
     }
 
     override func setupConstraints() {

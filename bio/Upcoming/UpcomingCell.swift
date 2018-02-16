@@ -24,8 +24,8 @@ class UpcomingCell: MovieCell {
         infoLabel.font = UIFont.systemFont(ofSize: 14)
         infoLabel.numberOfLines = 0
 
-        contentView.addSubview(infoLabel)
-        contentView.addSubview(notifyIcon)
+        foreground.addSubview(infoLabel)
+        foreground.addSubview(notifyIcon)
     }
 
     override func setupConstraints() {

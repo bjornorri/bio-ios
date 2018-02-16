@@ -34,10 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navVC.navigationBar.isTranslucent = false
             navVC.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
             navVC.navigationBar.isHidden = true
-
-            let statusBarBackground = UIView(frame: UIApplication.shared.statusBarFrame)
-            statusBarBackground.backgroundColor = UIColor.bioGray
-            navVC.view.addSubview(statusBarBackground)
         }
         showtimesVC.title = "Sýningar"
         showtimesVC.tabBarItem.image = IonIcons.image(withIcon: ion_ios_videocam, size: 30, color: UIColor.gray)

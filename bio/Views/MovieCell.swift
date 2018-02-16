@@ -21,7 +21,18 @@ class MovieCell: MMParallaxCell {
             posterView.playHidden = playHidden
         }
     }
+    var maskY = CGFloat(0) {
+        didSet {
+            if contentView.mask == nil {
+                let mask = UIView()
+                mask.backgroundColor = UIColor.white
+                foreground.mask = mask
+            }
+            foreground.mask?.frame = CGRect(x: 0, y: maskY, width: bounds.width, height: bounds.height - maskY)
+        }
+    }
 
+    internal var foreground = UIView()
     internal var backdropView: UIImageView!
     internal let posterView = PosterView()
     internal let titleLabel = UILabel()
@@ -54,22 +65,27 @@ class MovieCell: MMParallaxCell {
 
         // Add subviews
         contentView.addSubview(backdropView)
-        contentView.addSubview(posterView)
-        contentView.addSubview(titleLabel)
+        contentView.addSubview(foreground)
+        foreground.addSubview(posterView)
+        foreground.addSubview(titleLabel)
     }
 
     func setupConstraints() {
+        // Foreground
+        foreground.snp.makeConstraints() { make in
+            make.edges.equalToSuperview()
+        }
         // Poster
         posterView.snp.makeConstraints() { make in
-            make.top.equalTo(contentView).offset(20)
-            make.left.equalTo(contentView).offset(16)
-            make.bottom.equalTo(contentView).offset(-20)
+            make.top.equalToSuperview().offset(20)
+            make.left.equalToSuperview().offset(16)
+            make.bottom.equalToSuperview().offset(-20)
             make.width.equalTo(posterView.snp.height).multipliedBy(2.0 / 3.0)
         }
         // Title
         titleLabel.snp.makeConstraints() { make in
-            make.top.equalTo(contentView).offset(20)
-            make.right.equalTo(contentView).offset(-8)
+            make.top.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-8)
             make.left.equalTo(posterView.snp.right).offset(16)
         }
     }
