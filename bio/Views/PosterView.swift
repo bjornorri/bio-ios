@@ -64,7 +64,8 @@ class PosterView: UIView {
 
     func setupConstraints() {
         playButton.snp.makeConstraints() { make in
-            make.width.equalTo(imageView).multipliedBy(0.6)
+            make.width.greaterThanOrEqualTo(60)
+            make.width.greaterThanOrEqualTo(imageView.snp.width).multipliedBy(0.6)
             make.height.equalTo(playButton.snp.width)
             make.center.equalTo(imageView)
         }
