@@ -11,8 +11,8 @@ import SwiftyJSON
 
 class Movie: NSObject {
 
+    let imdbId: String
     let title: String?
-    let imdbId: String?
     let poster: URL?
     let backdrop: URL?
     let trailerId: String?
@@ -33,8 +33,8 @@ class Movie: NSObject {
     }
 
     init(json: JSON) {
+        imdbId = json["imdb_id"].stringValue
         title = json["title"].string
-        imdbId = json["imdb_id"].string
         poster = json["poster"].string?.toURL()
         backdrop = json["backdrop"].string?.toURL()
         trailerId = json["trailer"].dictionary?["key"]?.string

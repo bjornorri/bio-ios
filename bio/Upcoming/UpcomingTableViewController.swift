@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 import GradientLoadingBar
 
 class UpcomingTableViewController: UITableViewController {
@@ -52,5 +53,18 @@ class UpcomingTableViewController: UITableViewController {
         }
         cell.posterView.delegate = self
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let movie = movies?[indexPath.row] else { return }
+        presentIMDbController(forMovie: movie)
+    }
+
+    private func presentIMDbController(forMovie movie: Movie) {
+        guard let url = URL(string: "https://www.imdb.com/title/tt\(movie.imdbId)") else { return }
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredBarTintColor = UIColor.black
+        safariVC.preferredControlTintColor = UIColor.bioOrange
+        present(safariVC, animated: true, completion: nil)
     }
 }
