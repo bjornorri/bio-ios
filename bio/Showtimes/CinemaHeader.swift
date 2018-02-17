@@ -8,20 +8,19 @@
 
 import UIKit
 
-class CinemaHeader: UIView {
+class CinemaHeader: UITableViewCell {
 
-    var schedule: Schedule!
+    var schedule: Schedule! {
+        didSet {
+            nameLabel.text = schedule.cinemaName.uppercased()
+        }
+    }
 
     let nameLabel = UILabel()
     let separator = UIView()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    convenience init(schedule: Schedule) {
-        self.init(frame: CGRect.zero)
-        self.schedule = schedule
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
         setupConstraints()
     }
@@ -35,12 +34,11 @@ class CinemaHeader: UIView {
 
         nameLabel.font = UIFont.myriadBoldCond.withSize(24)
         nameLabel.textColor = UIColor.white
-        nameLabel.text = schedule.cinemaName.uppercased()
 
         separator.backgroundColor = UIColor.white
 
-        addSubview(nameLabel)
-        addSubview(separator)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(separator)
     }
 
     func setupConstraints() {
@@ -54,7 +52,7 @@ class CinemaHeader: UIView {
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-8)
             make.top.equalTo(nameLabel.snp.bottom).offset(4)
-            make.bottom.equalToSuperview().offset(-8)
+            make.bottom.equalToSuperview()
         }
     }
 }

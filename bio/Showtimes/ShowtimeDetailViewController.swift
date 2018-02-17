@@ -15,6 +15,7 @@ class ShowtimeDetailViewController: FadeTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(ScheduleCell.self, forCellReuseIdentifier: "scheduleCell")
+        tableView.register(CinemaHeader.self, forCellReuseIdentifier: "cinemaHeader")
         tableView.backgroundColor = UIColor.black
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
@@ -53,20 +54,35 @@ class ShowtimeDetailViewController: FadeTableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return movie.showtimes?.count ?? 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let schedule = movie.showtimes?[section] else { return nil }
-        return CinemaHeader(schedule: schedule)
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let count = movie.showtimes?.count {
+            return count * 2
+        }
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let schedule = movie.showtimes?[indexPath.section] else { return UITableViewCell(frame: CGRect.zero) }
+        if indexPath.row % 2 == 0 {
+            return dequeueHeader(at: indexPath)
+        } else {
+            return dequeueCell(at: indexPath)
+        }
+    }
+
+    private func dequeueHeader(at indexPath: IndexPath) -> UITableViewCell {
+        let index = indexPath.row / 2
+        guard let schedule = movie.showtimes?[index] else { return UITableViewCell(frame: CGRect.zero) }
+        let header = tableView.dequeueReusableCell(withIdentifier: "cinemaHeader", for: indexPath) as! CinemaHeader
+        header.schedule = schedule
+        return header
+    }
+
+    private func dequeueCell(at indexPath: IndexPath) -> UITableViewCell {
+        let index = (indexPath.row - 1) / 2
+        guard let schedule = movie.showtimes?[index] else { return UITableViewCell(frame: CGRect.zero) }
         let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath) as! ScheduleCell
         cell.schedule = schedule
         return cell

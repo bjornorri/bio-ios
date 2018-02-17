@@ -47,8 +47,8 @@ class ScheduleCell: UITableViewCell {
 
     func setupConstraints() {
         collectionView.snp.makeConstraints() { make in
-            make.top.equalToSuperview().offset(8)
-            make.bottom.equalToSuperview().offset(-20)
+            make.top.equalToSuperview().offset(16)
+            make.bottom.equalToSuperview().offset(-24)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-8)
         }
@@ -62,8 +62,7 @@ class ScheduleCell: UITableViewCell {
         collectionView.layoutIfNeeded()
         var size = collectionView.collectionViewLayout.collectionViewContentSize
         // Fix for margins
-        size.height += 36
-        size.width -= 16
+        size.height += 40
         return size
     }
 }
