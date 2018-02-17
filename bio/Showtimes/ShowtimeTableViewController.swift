@@ -9,7 +9,7 @@
 import UIKit
 import GradientLoadingBar
 
-class ShowtimeTableViewController: UITableViewController {
+class ShowtimeTableViewController: FadeTableViewController {
 
     var movies: [Movie]?
 
@@ -58,18 +58,5 @@ class ShowtimeTableViewController: UITableViewController {
         let detailVC = ShowtimeDetailViewController()
         detailVC.movie = movies[indexPath.row]
         show(detailVC, sender: nil)
-    }
-}
-
-extension ShowtimeTableViewController {
-
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let statusBarFrame = UIApplication.shared.statusBarFrame
-        guard let cells = tableView.visibleCells as? [MovieCell] else { return }
-        for cell in cells {
-            let cellRect = cell.frame.offsetBy(dx: 0, dy: -tableView.contentOffset.y)
-            let maskY = tableView.contentOffset.y - cell.frame.minY
-            cell.maskY = maskY == CGFloat.infinity ? 0 : maskY
-        }
     }
 }

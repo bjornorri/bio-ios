@@ -9,7 +9,7 @@
 import UIKit
 import MMParallaxCell
 
-class MovieCell: MMParallaxCell {
+class MovieCell: MMParallaxCell, FadeView {
 
     var movie: Movie! {
         didSet {
@@ -22,17 +22,7 @@ class MovieCell: MMParallaxCell {
         }
     }
 
-    var maskY = CGFloat(0) {
-        didSet {
-            if foreground.mask == nil {
-                let mask = GradientView(frame: bounds)
-                foreground.mask = mask
-            }
-            foreground.mask?.frame = CGRect(x: 0, y: maskY, width: bounds.width, height: bounds.height - maskY)
-        }
-    }
-
-    internal var foreground = UIView()
+    var foreground = UIView()
     internal var backdropView: UIImageView!
     internal let posterView = PosterView()
     internal let titleLabel = UILabel()

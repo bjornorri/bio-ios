@@ -10,15 +10,13 @@ import UIKit
 
 class GradientView: UIView {
 
-    let gradientLayer = CAGradientLayer()
+    private let gradientLayer = CAGradientLayer()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let endPointY = (statusBarHeight * 3) / frame.height
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.white.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: endPointY)
+        updateEndpoint()
         layer.addSublayer(gradientLayer)
     }
 
@@ -30,7 +28,14 @@ class GradientView: UIView {
         super.layoutSubviews()
         CATransaction.begin()
         CATransaction.setDisableActions(true)
+        updateEndpoint()
         gradientLayer.frame = bounds
         CATransaction.commit()
+    }
+
+    private func updateEndpoint() {
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let endPointY = (statusBarHeight * 2) / bounds.height
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: endPointY)
     }
 }

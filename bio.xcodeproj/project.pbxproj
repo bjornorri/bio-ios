@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		838A32B1A1BF0A11DA98562B /* Pods_bio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B61A8761547772B04CBED26 /* Pods_bio.framework */; };
+		9810B1D3203857A700093EBC /* FadeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9810B1D2203857A700093EBC /* FadeTableViewController.swift */; };
 		9811E5BD200E79D4003F54EC /* CinemaHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9811E5BC200E79D4003F54EC /* CinemaHeader.swift */; };
 		98227635200E4DEC00839E4D /* Screening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98227634200E4DEC00839E4D /* Screening.swift */; };
 		98227637200E4F7F00839E4D /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98227636200E4F7F00839E4D /* Schedule.swift */; };
@@ -38,6 +39,7 @@
 		3B61A8761547772B04CBED26 /* Pods_bio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A17475041786E60A319C148 /* Pods-bio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bio/Pods-bio.debug.xcconfig"; sourceTree = "<group>"; };
 		794112E55412391B1CA68A2E /* Pods-bio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bio.release.xcconfig"; path = "Pods/Target Support Files/Pods-bio/Pods-bio.release.xcconfig"; sourceTree = "<group>"; };
+		9810B1D2203857A700093EBC /* FadeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTableViewController.swift; sourceTree = "<group>"; };
 		9811E5BC200E79D4003F54EC /* CinemaHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaHeader.swift; sourceTree = "<group>"; };
 		98227634200E4DEC00839E4D /* Screening.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screening.swift; sourceTree = "<group>"; };
 		98227636200E4F7F00839E4D /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		989824B72033215D00248F87 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9810B1D2203857A700093EBC /* FadeTableViewController.swift */,
 				989DCC952020BED5003E020C /* IMDbRatingView.swift */,
 				989824B82033217D00248F87 /* PosterView.swift */,
 				986E927C203700D800C2368B /* MovieCell.swift */,
@@ -368,6 +371,7 @@
 				98E947D72035E44700AB7234 /* NotificationManager.swift in Sources */,
 				98B702D82019F42300289F3D /* ScreeningCell.swift in Sources */,
 				98227637200E4F7F00839E4D /* Schedule.swift in Sources */,
+				9810B1D3203857A700093EBC /* FadeTableViewController.swift in Sources */,
 				9869092E203305650074B7DD /* UpcomingCell.swift in Sources */,
 				9811E5BD200E79D4003F54EC /* CinemaHeader.swift in Sources */,
 				98227635200E4DEC00839E4D /* Screening.swift in Sources */,

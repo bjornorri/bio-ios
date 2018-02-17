@@ -10,7 +10,7 @@ import UIKit
 import SafariServices
 import GradientLoadingBar
 
-class UpcomingTableViewController: UITableViewController {
+class UpcomingTableViewController: FadeTableViewController {
 
     var movies: [Movie]?
 

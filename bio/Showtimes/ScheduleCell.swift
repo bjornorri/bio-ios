@@ -91,5 +91,3 @@ extension ScheduleCell: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets.zero
     }
 }
-
-

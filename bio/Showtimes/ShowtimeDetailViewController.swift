@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShowtimeDetailViewController: UITableViewController {
+class ShowtimeDetailViewController: FadeTableViewController {
 
     var movie: Movie!
 
