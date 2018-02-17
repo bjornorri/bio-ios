@@ -10,7 +10,11 @@ import UIKit
 
 class ScheduleCell: UITableViewCell {
 
-    var screenings: [Screening]!
+    var schedule: Schedule! {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
 
     var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
 
@@ -50,8 +54,7 @@ class ScheduleCell: UITableViewCell {
         }
     }
 
-    func displayScreenings(_ screenings: [Screening]) {
-        self.screenings = screenings
+    func displaySchedule(_ screenings: [Screening]) {
         collectionView.reloadData()
     }
 
@@ -72,12 +75,12 @@ extension ScheduleCell: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return screenings.count
+        return schedule.screenings.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screeningCell", for: indexPath) as! ScreeningCell
-        cell.displayScreening(screenings[indexPath.row])
+        cell.screening = schedule.screenings[indexPath.row]
         return cell
     }
 }
@@ -85,7 +88,7 @@ extension ScheduleCell: UICollectionViewDataSource {
 extension ScheduleCell: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if screenings.count == 1 {
+        if schedule.screenings.count == 1 {
             return UIEdgeInsets(top: 0, left: -collectionView.bounds.width + 70.0, bottom: 0, right: 0)
         }
         return UIEdgeInsets.zero

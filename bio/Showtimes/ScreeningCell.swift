@@ -10,7 +10,11 @@ import UIKit
 
 class ScreeningCell: UICollectionViewCell {
 
-    var screening: Screening!
+    var screening: Screening! {
+        didSet {
+            displayScreening()
+        }
+    }
 
     let button = UIButton()
 
@@ -42,7 +46,7 @@ class ScreeningCell: UICollectionViewCell {
         }
     }
 
-    func displayScreening(_ screening: Screening) {
+    private func displayScreening() {
         button.setTitle(screening.time.timeString(), for: .normal)
         if !screening.time.isPast() {
             button.isEnabled = true

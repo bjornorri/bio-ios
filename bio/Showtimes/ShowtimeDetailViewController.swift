@@ -66,9 +66,9 @@ class ShowtimeDetailViewController: FadeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let screenings = movie.showtimes?[indexPath.section].screenings else { return UITableViewCell(frame: CGRect.zero) }
+        guard let schedule = movie.showtimes?[indexPath.section] else { return UITableViewCell(frame: CGRect.zero) }
         let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath) as! ScheduleCell
-        cell.displayScreenings(screenings)
+        cell.schedule = schedule
         return cell
     }
 }
