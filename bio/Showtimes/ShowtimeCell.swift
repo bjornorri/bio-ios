@@ -15,6 +15,14 @@ class ShowtimeCell: MovieCell {
 
     let imdbView = IMDbRatingView()
 
+    override var normalAlpha: CGFloat {
+        return 0.4
+    }
+
+    override var selectedAlpha: CGFloat {
+        return 0.6
+    }
+
     override func setupViews() {
         super.setupViews()
         posterView.playHidden = true
@@ -23,7 +31,6 @@ class ShowtimeCell: MovieCell {
 
     override func setupConstraints() {
         super.setupConstraints()
-        // IMDb
         imdbView.snp.makeConstraints() { make in
             make.left.equalTo(titleLabel)
             make.top.equalTo(titleLabel.snp.bottom).offset(8)

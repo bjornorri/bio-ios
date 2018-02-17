@@ -21,6 +21,12 @@ class MovieCell: MMParallaxCell, FadeView {
             posterView.playHidden = playHidden
         }
     }
+    var selectedAlpha: CGFloat {
+        return 0.5
+    }
+    var normalAlpha: CGFloat {
+        return 0.3
+    }
 
     var foreground = UIView()
     internal var backdropView: UIImageView!
@@ -45,7 +51,7 @@ class MovieCell: MMParallaxCell, FadeView {
         contentView.backgroundColor = UIColor.black
 
         // Backdrop
-        backdropView.alpha = 0.3
+        backdropView.alpha = 0.5
 
         // Title
         titleLabel.textColor = UIColor.white
@@ -89,10 +95,10 @@ class MovieCell: MMParallaxCell, FadeView {
     override func setSelected(_ selected: Bool, animated: Bool) {
         if animated {
             UIView.animate(withDuration: 0.2) {
-                self.backdropView.alpha = selected ? 0.5 : 0.3
+                self.backdropView.alpha = selected ? self.selectedAlpha : self.normalAlpha
             }
         } else {
-            self.backdropView.alpha = selected ? 0.5 : 0.3
+            self.backdropView.alpha = selected ? selectedAlpha : normalAlpha
         }
     }
 

@@ -45,8 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         upcomingVC.setViewControllers([UpcomingTableViewController()], animated: false)
 
         let tabVC = UITabBarController()
-        tabVC.tabBar.barTintColor = UIColor.bioGray
         tabVC.tabBar.tintColor = UIColor.white
+        tabVC.tabBar.barTintColor = UIColor.bioGray
         tabVC.setViewControllers([showtimesVC, upcomingVC], animated: false)
 
         window = UIWindow(frame: UIScreen.main.bounds)
