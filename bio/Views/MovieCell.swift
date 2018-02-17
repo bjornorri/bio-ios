@@ -21,11 +21,11 @@ class MovieCell: MMParallaxCell {
             posterView.playHidden = playHidden
         }
     }
+
     var maskY = CGFloat(0) {
         didSet {
-            if contentView.mask == nil {
-                let mask = UIView()
-                mask.backgroundColor = UIColor.white
+            if foreground.mask == nil {
+                let mask = GradientView(frame: bounds)
                 foreground.mask = mask
             }
             foreground.mask?.frame = CGRect(x: 0, y: maskY, width: bounds.width, height: bounds.height - maskY)

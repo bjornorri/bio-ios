@@ -68,8 +68,7 @@ extension ShowtimeTableViewController {
         guard let cells = tableView.visibleCells as? [MovieCell] else { return }
         for cell in cells {
             let cellRect = cell.frame.offsetBy(dx: 0, dy: -tableView.contentOffset.y)
-            let intersection = cellRect.intersection(statusBarFrame)
-            let maskY = intersection.maxY + tableView.contentOffset.y - cell.frame.minY
+            let maskY = tableView.contentOffset.y - cell.frame.minY
             cell.maskY = maskY == CGFloat.infinity ? 0 : maskY
         }
     }
