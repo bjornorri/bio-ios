@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         upcomingVC.tabBarItem.selectedImage = IonIcons.image(withIcon: ion_ios_film, size: 30, color: UIColor.bioOrange)
         upcomingVC.setViewControllers([UpcomingTableViewController()], animated: false)
 
-        let tabVC = UITabBarController()
+        let tabVC = TabBarController()
         tabVC.tabBar.tintColor = UIColor.white
         tabVC.tabBar.barTintColor = UIColor.bioGray
         tabVC.setViewControllers([showtimesVC, upcomingVC], animated: false)
