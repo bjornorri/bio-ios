@@ -48,6 +48,7 @@ class DataStore {
     func fetchShowtimes() {
         loadingShowtimes = true
         Api.getShowtimes { movies in
+            self.cacheImages(forMovies: movies)
             self.showtimes = movies
             self.loadingShowtimes = false
         }
@@ -56,6 +57,7 @@ class DataStore {
     func fetchUpcoming() {
         loadingUpcoming = true
         Api.getUpcoming { movies in
+            self.cacheImages(forMovies: movies)
             self.upcoming = movies
             self.loadingUpcoming = false
         }
@@ -64,5 +66,16 @@ class DataStore {
     func fetchData() {
         fetchShowtimes()
         fetchUpcoming()
+    }
+
+    private func cacheImages(forMovies movies: [Movie]) {
+        for movie in movies {
+            if let poster = movie.poster {
+                KingfisherManager.shared.retrieveImage(with: poster, options: nil, progressBlock: nil, completionHandler: nil)
+            }
+            if let backdrop = movie.backdrop {
+                KingfisherManager.shared.retrieveImage(with: backdrop, options: nil, progressBlock: nil, completionHandler: nil)
+            }
+        }
     }
 }

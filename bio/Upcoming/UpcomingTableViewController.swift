@@ -12,8 +12,6 @@ import GradientLoadingBar
 
 class UpcomingTableViewController: FadeTableViewController {
 
-    var movies: [Movie]?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Væntanlegt"
@@ -53,7 +51,7 @@ class UpcomingTableViewController: FadeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let movie = movies?[indexPath.row] else { return }
+        guard let movie = DataStore.shared.upcoming?[indexPath.row] else { return }
         showActionSheet(forMovie: movie)
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
