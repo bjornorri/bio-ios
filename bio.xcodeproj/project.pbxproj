@@ -11,6 +11,7 @@
 		9810B1D3203857A700093EBC /* FadeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9810B1D2203857A700093EBC /* FadeTableViewController.swift */; };
 		9811E5BD200E79D4003F54EC /* CinemaHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9811E5BC200E79D4003F54EC /* CinemaHeader.swift */; };
 		981CAF7C203B3B3B00065591 /* FloatingCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981CAF7B203B3B3B00065591 /* FloatingCircle.swift */; };
+		981F04F9203C883E004944B6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F04F8203C883E004944B6 /* DataStore.swift */; };
 		98227635200E4DEC00839E4D /* Screening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98227634200E4DEC00839E4D /* Screening.swift */; };
 		98227637200E4F7F00839E4D /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98227636200E4F7F00839E4D /* Schedule.swift */; };
 		983AF2A32037C9BB00F88A69 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983AF2A22037C9BB00F88A69 /* GradientView.swift */; };
@@ -44,6 +45,7 @@
 		9810B1D2203857A700093EBC /* FadeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTableViewController.swift; sourceTree = "<group>"; };
 		9811E5BC200E79D4003F54EC /* CinemaHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaHeader.swift; sourceTree = "<group>"; };
 		981CAF7B203B3B3B00065591 /* FloatingCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingCircle.swift; sourceTree = "<group>"; };
+		981F04F8203C883E004944B6 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataStore.swift; path = "/Users/bjornorri/Documents/bio-ios/bio/DataStore.swift"; sourceTree = "<absolute>"; };
 		98227634200E4DEC00839E4D /* Screening.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screening.swift; sourceTree = "<group>"; };
 		98227636200E4F7F00839E4D /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		983AF2A22037C9BB00F88A69 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				98E947D52035E29800AB7234 /* bio.entitlements */,
 				98E68B392007899900C55173 /* AppDelegate.swift */,
 				98BDA58B20078FE900A26A40 /* Api.swift */,
+				981F04F8203C883E004944B6 /* DataStore.swift */,
 				98E947D62035E44700AB7234 /* NotificationManager.swift */,
 				98BCEED32007CF420014A521 /* Extensions.swift */,
 				989824B52033126F00248F87 /* Utils.swift */,
@@ -385,6 +388,7 @@
 				9849B7C1200C1A49003DC853 /* ShowtimeDetailViewController.swift in Sources */,
 				98BDA58C20078FE900A26A40 /* Api.swift in Sources */,
 				98BDA591200794F900A26A40 /* Movie.swift in Sources */,
+				981F04F9203C883E004944B6 /* DataStore.swift in Sources */,
 				983AF2A32037C9BB00F88A69 /* GradientView.swift in Sources */,
 				989DCC962020BED5003E020C /* IMDbRatingView.swift in Sources */,
 				989824B62033126F00248F87 /* Utils.swift in Sources */,

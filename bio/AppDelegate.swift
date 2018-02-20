@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import GradientLoadingBar
 import ionicons
 
 @UIApplicationMain
@@ -19,8 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setRootViewController()
+        setupLoadingIndicator()
         Fabric.with([Crashlytics.self])
         NotificationManager.shared.registerForPushNotifications()
+        DataStore.shared.fetchData()
         return true
     }
 
@@ -52,6 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tabVC
         window?.makeKeyAndVisible()
+    }
+
+    func setupLoadingIndicator() {
+        NotificationCenter.default.addObserver(forName: DataStore.shared.loadingDataUpdatedNotification, object: nil, queue: nil) { _ in
+            DataStore.shared.loadingData ? GradientLoadingBar.shared.show() : GradientLoadingBar.shared.hide()
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

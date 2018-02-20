@@ -107,7 +107,7 @@ class TabBarController: UITabBarController {
     private func tabBarCircleFrame() -> CGRect {
         let frame = normalCircleFrame()
         let tabBarHeight = tabBar.frame.height
-        let y = view.bounds.maxY - tabBarHeight - 8
+        let y = view.bounds.maxY - tabBarHeight - 6
         return frame.offsetBy(dx: 0, dy: y - frame.minY)
     }
 

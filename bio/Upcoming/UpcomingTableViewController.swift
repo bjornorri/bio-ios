@@ -21,15 +21,12 @@ class UpcomingTableViewController: FadeTableViewController {
         tableView.backgroundColor = UIColor.bioGray
         tableView.register(UpcomingCell.self, forCellReuseIdentifier: "upcomingCell")
         tableView.estimatedRowHeight = round(UIScreen.main.bounds.width * (3.0 / 8.0)) + 16
-        fetchData()
+        listenForUpdates()
     }
 
-    func fetchData() {
-        GradientLoadingBar.shared.show()
-        Api.getUpcoming() { movies in
-            self.movies = movies
+    private func listenForUpdates() {
+        NotificationCenter.default.addObserver(forName: DataStore.shared.upcomingUpdatedNotification, object: nil, queue: nil) { _ in
             self.tableView.reloadData()
-            GradientLoadingBar.shared.hide()
         }
     }
 
@@ -38,7 +35,7 @@ class UpcomingTableViewController: FadeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies?.count ?? 0
+        return DataStore.shared.upcoming?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -47,7 +44,7 @@ class UpcomingTableViewController: FadeTableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "upcomingCell", for: indexPath) as? UpcomingCell) ?? UpcomingCell()
-        if let movies = movies {
+        if let movies = DataStore.shared.upcoming {
             let movie = movies[indexPath.row]
             cell.movie = movie
         }

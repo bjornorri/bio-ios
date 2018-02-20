@@ -11,23 +11,18 @@ import GradientLoadingBar
 
 class ShowtimeTableViewController: FadeTableViewController {
 
-    var movies: [Movie]?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Sýningar"
         tableView.backgroundColor = UIColor.bioGray
         tableView.separatorStyle = .none
         tableView.register(ShowtimeCell.self, forCellReuseIdentifier: "showtimeCell")
-        fetchData()
+        listenForUpdates()
     }
 
-    func fetchData() {
-        GradientLoadingBar.shared.show()
-        Api.getShowtimes() { movies in
-            self.movies = movies
+    private func listenForUpdates() {
+        NotificationCenter.default.addObserver(forName: DataStore.shared.showtimesUpdatedNotification, object: nil, queue: nil) { _ in
             self.tableView.reloadData()
-            GradientLoadingBar.shared.hide()
         }
     }
 
@@ -36,7 +31,7 @@ class ShowtimeTableViewController: FadeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let movies = movies else { return 0 }
+        guard let movies = DataStore.shared.showtimes else { return 0 }
         return movies.count
     }
 
@@ -46,7 +41,7 @@ class ShowtimeTableViewController: FadeTableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "showtimeCell", for: indexPath) as? ShowtimeCell) ?? ShowtimeCell()
-        if let movies = movies {
+        if let movies = DataStore.shared.showtimes {
             let movie = movies[indexPath.row]
             cell.movie = movie
         }
@@ -54,7 +49,7 @@ class ShowtimeTableViewController: FadeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let movies = movies else { return }
+        guard let movies = DataStore.shared.showtimes else { return }
         let detailVC = ShowtimeDetailViewController()
         detailVC.movie = movies[indexPath.row]
         show(detailVC, sender: nil)
