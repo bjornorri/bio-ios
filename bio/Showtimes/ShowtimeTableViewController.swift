@@ -16,6 +16,9 @@ class ShowtimeTableViewController: FadeTableViewController {
         tableView.backgroundColor = UIColor.bioGray
         tableView.separatorStyle = .none
         tableView.register(ShowtimeCell.self, forCellReuseIdentifier: "showtimeCell")
+        let rowHeight = tableView.bounds.width * (9.0 / 16.0)
+        tableView.estimatedRowHeight = rowHeight
+        tableView.rowHeight = rowHeight
         listenForUpdates()
     }
 
@@ -32,10 +35,6 @@ class ShowtimeTableViewController: FadeTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let movies = DataStore.shared.showtimes else { return 0 }
         return movies.count
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.bounds.width * (9.0 / 16.0)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
