@@ -38,12 +38,15 @@ class ShowtimeTableViewController: FadeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = (tableView.dequeueReusableCell(withIdentifier: "showtimeCell", for: indexPath) as? ShowtimeCell) ?? ShowtimeCell()
+        return tableView.dequeueReusableCell(withIdentifier: "showtimeCell", for: indexPath)
+    }
+
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? MovieCell else { return }
         if let movies = DataStore.shared.showtimes {
             let movie = movies[indexPath.row]
             cell.movie = movie
         }
-        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

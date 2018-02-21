@@ -17,7 +17,9 @@ class UpcomingTableViewController: FadeTableViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.bioGray
         tableView.register(UpcomingCell.self, forCellReuseIdentifier: "upcomingCell")
-        tableView.estimatedRowHeight = round(UIScreen.main.bounds.width * (3.0 / 8.0)) + 16
+        let rowHeight = round(UIScreen.main.bounds.width * (3.0 / 8.0)) + 16
+        tableView.estimatedRowHeight = rowHeight
+        tableView.rowHeight = rowHeight
         listenForUpdates()
     }
 
@@ -27,7 +29,6 @@ class UpcomingTableViewController: FadeTableViewController {
         }
     }
 
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -36,18 +37,17 @@ class UpcomingTableViewController: FadeTableViewController {
         return DataStore.shared.upcoming?.count ?? 0
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return round(UIScreen.main.bounds.width * (3.0 / 8.0)) + 16
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: "upcomingCell", for: indexPath)
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = (tableView.dequeueReusableCell(withIdentifier: "upcomingCell", for: indexPath) as? UpcomingCell) ?? UpcomingCell()
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? MovieCell else { return }
         if let movies = DataStore.shared.upcoming {
             let movie = movies[indexPath.row]
             cell.movie = movie
         }
         cell.posterView.delegate = self
-        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
