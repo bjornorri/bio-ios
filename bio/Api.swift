@@ -16,23 +16,31 @@ class Api {
 
     class func getShowtimes(handler: @escaping ([Movie]) -> Void) {
         let url = "\(baseURL)/showtimes"
-        Alamofire.request(url).responseJSON { response in
-            if let data = response.result.value {
-                let json = JSON(data)
-                let movies = Movie.fromJSON(json: json)
-                handler(movies)
-            }
+        let data = [
+            "deviceId": getDeviceId()
+        ]
+        Alamofire.request(url, method: .get, parameters: data, encoding: URLEncoding.default, headers: nil)
+            .responseJSON { response in
+                if let data = response.result.value {
+                    let json = JSON(data)
+                    let movies = Movie.fromJSON(json: json)
+                    handler(movies)
+                }
         }
     }
 
     class func getUpcoming(handler: @escaping ([Movie]) -> Void) {
         let url = "\(baseURL)/coming_soon"
-        Alamofire.request(url).responseJSON { response in
-            if let data = response.result.value {
-                let json = JSON(data)
-                let movies = Movie.fromJSON(json: json)
-                handler(movies)
-            }
+        let data = [
+            "deviceId": getDeviceId()
+        ]
+        Alamofire.request(url, method: .get, parameters: data, encoding: URLEncoding.default, headers: nil)
+            .responseJSON { response in
+                if let data = response.result.value {
+                    let json = JSON(data)
+                    let movies = Movie.fromJSON(json: json)
+                    handler(movies)
+                }
         }
     }
 

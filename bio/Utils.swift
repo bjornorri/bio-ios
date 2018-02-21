@@ -6,7 +6,12 @@
 //  Copyright © 2018 Bjorn Orri Saemundsson. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+func getDeviceId() -> String {
+    guard let deviceId = UIDevice.current.identifierForVendor?.uuidString else { return "" }
+    return deviceId
+}
 
 func getAttributedInfoString(forMovie movie: Movie, skipPlot: Bool = false) -> NSAttributedString {
 
