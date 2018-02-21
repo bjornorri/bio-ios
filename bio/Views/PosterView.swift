@@ -20,7 +20,7 @@ class PosterView: UIView {
 
     var movie: Movie? {
         didSet {
-            imageView.kf.setImage(with: movie?.poster)
+            imageView.kf.setImage(with: movie?.poster, placeholder: nil, options: [.keepCurrentImageWhileLoading])
             playButton.isHidden = playHidden || movie?.trailerId == nil
         }
     }

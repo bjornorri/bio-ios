@@ -51,7 +51,7 @@ class UpcomingCell: MovieCell {
     override func displayMovie() {
         super.displayMovie()
         infoLabel.attributedText = getAttributedInfoString(forMovie: movie, skipPlot: true)
-        notifyIcon.isHidden = !movie.notify
+        notifyIcon.isHidden = !(movie.notify && UIApplication.shared.isRegisteredForRemoteNotifications)
     }
 }
 

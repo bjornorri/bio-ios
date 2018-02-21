@@ -88,7 +88,7 @@ class MovieCell: MMParallaxCell, FadeView {
     }
 
     internal func displayMovie() {
-        backdropView.kf.setImage(with: movie.backdrop)
+        backdropView.kf.setImage(with: movie.backdrop, placeholder: nil, options: [.keepCurrentImageWhileLoading])
         posterView.movie = movie
         titleLabel.text = movie.title
     }

@@ -100,7 +100,7 @@ class UpcomingTableViewController: FadeTableViewController {
     }
 
     private func getNotifyAction(forMovie movie: Movie) -> UIAlertAction {
-        return movie.notify ? abortNotificationAction(forMovie: movie) : requestNotificationAction(forMovie: movie)
+        return (movie.notify && UIApplication.shared.isRegisteredForRemoteNotifications) ? abortNotificationAction(forMovie: movie) : requestNotificationAction(forMovie: movie)
     }
 
     private func requestNotificationAction(forMovie movie: Movie) -> UIAlertAction {
