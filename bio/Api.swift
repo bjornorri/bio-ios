@@ -30,7 +30,7 @@ class Api {
     }
 
     class func getUpcoming(handler: @escaping ([Movie]) -> Void) {
-        let url = "\(baseURL)/coming_soon"
+        let url = "\(baseURL)/upcoming"
         let data = [
             "deviceId": getDeviceId()
         ]

@@ -29,12 +29,18 @@ class DataStore {
 
     private var loadingShowtimes = false {
         didSet {
-            loadingData = loadingShowtimes || loadingUpcoming
+            loadingData = loadingShowtimes || loadingUpcoming || loadingNotification
         }
     }
     private var loadingUpcoming = false {
         didSet {
-            loadingData = loadingShowtimes || loadingUpcoming
+            loadingData = loadingShowtimes || loadingUpcoming || loadingNotification
+        }
+    }
+
+    private var loadingNotification = false {
+        didSet {
+            loadingData = loadingShowtimes || loadingUpcoming || loadingNotification
         }
     }
 
@@ -66,6 +72,22 @@ class DataStore {
     func fetchData() {
         fetchShowtimes()
         fetchUpcoming()
+    }
+
+    func requestNotification(forMovie movie: Movie) {
+        loadingNotification = true
+        Api.createNotification(withDeviceId: getDeviceId(), imdbId: movie.imdbId) { movies in
+            DataStore.shared.upcoming = movies
+            self.loadingNotification = false
+        }
+    }
+
+    func deleteNotification(forMovie movie: Movie) {
+        loadingNotification = true
+        Api.deleteNotification(withDeviceId: getDeviceId(), imdbId: movie.imdbId) { movies in
+            DataStore.shared.upcoming = movies
+            self.loadingNotification = false
+        }
     }
 
     private func cacheImages(forMovies movies: [Movie]) {

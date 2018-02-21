@@ -56,16 +56,4 @@ class NotificationManager {
         guard let token = token else { return }
         Api.registerDevice(withId: getDeviceId(), apnsToken: token)
     }
-
-    func requestNotification(forMovie movie: Movie) {
-        Api.createNotification(withDeviceId: getDeviceId(), imdbId: movie.imdbId) { movies in
-            DataStore.shared.upcoming = movies
-        }
-    }
-
-    func deleteNotification(forMovie movie: Movie) {
-        Api.deleteNotification(withDeviceId: getDeviceId(), imdbId: movie.imdbId) { movies in
-            DataStore.shared.upcoming = movies
-        }
-    }
 }

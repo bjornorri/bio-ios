@@ -105,18 +105,18 @@ class UpcomingTableViewController: FadeTableViewController {
     private func requestNotificationAction(forMovie movie: Movie) -> UIAlertAction {
         return UIAlertAction(title: "Fá tilkynningu", style: .default) { _ in
             if UIApplication.shared.isRegisteredForRemoteNotifications {
-                NotificationManager.shared.requestNotification(forMovie: movie)
+                DataStore.shared.requestNotification(forMovie: movie)
                 return
             }
             NotificationManager.shared.registerForPushNotifications() { success in
-                success ? NotificationManager.shared.requestNotification(forMovie: movie) : self.showNotificationWarning()
+                success ? DataStore.shared.requestNotification(forMovie: movie) : self.showNotificationWarning()
             }
         }
     }
 
     private func abortNotificationAction(forMovie movie: Movie) -> UIAlertAction {
         return UIAlertAction(title: "Hætta við tilkynningu", style: .destructive) { _ in
-            NotificationManager.shared.deleteNotification(forMovie: movie)
+            DataStore.shared.deleteNotification(forMovie: movie)
         }
     }
 }
