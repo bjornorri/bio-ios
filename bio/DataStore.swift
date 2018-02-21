@@ -11,6 +11,7 @@ import Kingfisher
 class DataStore {
 
     static let shared = DataStore()
+
     let showtimesUpdatedNotification = NSNotification.Name("showtimesUpdated")
     let upcomingUpdatedNotification = NSNotification.Name("upcomingUpdated")
     let loadingDataUpdatedNotification = NSNotification.Name("loadingDataUpdated")
@@ -48,6 +49,15 @@ class DataStore {
         didSet {
             guard loadingData != oldValue else { return }
             NotificationCenter.default.post(name: loadingDataUpdatedNotification, object: nil)
+        }
+    }
+
+    private init() {
+        NotificationCenter.default.addObserver(forName: .UIApplicationDidFinishLaunching, object: nil, queue: nil) { _ in
+            self.fetchData()
+        }
+        NotificationCenter.default.addObserver(forName: .UIApplicationWillEnterForeground, object: nil, queue: nil) { _ in
+            self.fetchData()
         }
     }
 

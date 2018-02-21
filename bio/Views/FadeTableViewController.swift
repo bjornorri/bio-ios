@@ -35,5 +35,4 @@ class FadeTableViewController: UITableViewController {
         let maskY = tableView.contentOffset.y - view.frame.minY
         v.mask?.frame = CGRect(x: 0, y: maskY, width: v.bounds.width, height: v.bounds.height - maskY)
     }
-
 }

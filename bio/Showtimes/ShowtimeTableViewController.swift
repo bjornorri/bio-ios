@@ -21,7 +21,7 @@ class ShowtimeTableViewController: FadeTableViewController {
 
     private func listenForUpdates() {
         NotificationCenter.default.addObserver(forName: DataStore.shared.showtimesUpdatedNotification, object: nil, queue: nil) { _ in
-            self.tableView.reloadData()
+            self.tableView.reloadData(animated: true)
         }
     }
 

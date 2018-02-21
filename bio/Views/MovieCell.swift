@@ -51,6 +51,7 @@ class MovieCell: MMParallaxCell, FadeView {
         contentView.backgroundColor = UIColor.black
 
         // Backdrop
+        backdropView.backgroundColor = UIColor.clear
         backdropView.alpha = 0.5
 
         // Title

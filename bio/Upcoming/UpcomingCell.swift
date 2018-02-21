@@ -17,7 +17,7 @@ class UpcomingCell: MovieCell {
     override func setupViews() {
         super.setupViews()
 
-        notifyIcon.image = IonIcons.image(withIcon: ion_ios_bell, size: 24, color: UIColor.bioOrange)
+        notifyIcon.image = IonIcons.image(withIcon: ion_ios_bell, size: 24, color: UIColor.bioGold)
 
         titleLabel.numberOfLines = 1
         infoLabel.textColor = UIColor.white
@@ -39,7 +39,7 @@ class UpcomingCell: MovieCell {
         titleLabel.snp.remakeConstraints() { make in
             make.top.equalTo(contentView).offset(20)
             make.left.equalTo(posterView.snp.right).offset(16)
-            make.right.lessThanOrEqualTo(notifyIcon.snp.left).offset(-4)
+            make.right.lessThanOrEqualTo(notifyIcon.snp.left).offset(-8)
         }
         infoLabel.snp.makeConstraints() { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)

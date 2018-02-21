@@ -17,7 +17,7 @@ class FloatingCircle: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         background.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-        background.layer.borderColor = UIColor(red: 156, green: 110, blue: 41).cgColor
+        background.layer.borderColor = UIColor.bioGold.cgColor
         background.layer.borderWidth = 2.0
         line1.backgroundColor = UIColor.white
         line2.backgroundColor = UIColor.white
@@ -39,6 +39,8 @@ class FloatingCircle: UIView {
 
     func setTransformed(_ transformed: Bool) {
         background.alpha = transformed ? 0.0 : 1.0
+        line1.backgroundColor = transformed ? UIColor.gray : UIColor.white
+        line2.backgroundColor = transformed ? UIColor.gray : UIColor.white
         let length = CGFloat(30)
         if !transformed {
             line1.transform = .identity

@@ -17,6 +17,7 @@ extension UIColor {
     }
 
     static let bioGray = UIColor(red: 31, green: 31, blue: 31)
+    static let bioGold = UIColor(red: 156, green: 110, blue: 41)
     static let bioOrange = UIColor.orange
 }
 
@@ -104,6 +105,19 @@ extension UIViewController: PosterViewDelegate {
                 playerVC?.dismiss(animated: true)
             }
         }
+    }
+}
+
+extension UITableView {
+
+    func reloadData(animated: Bool) {
+        if !animated {
+            reloadData()
+            return
+        }
+        UIView.transition(with: self, duration: 0.2, options: .transitionCrossDissolve, animations: {
+            self.reloadData()
+        })
     }
 }
 

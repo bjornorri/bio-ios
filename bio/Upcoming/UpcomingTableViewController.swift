@@ -23,9 +23,10 @@ class UpcomingTableViewController: FadeTableViewController {
 
     private func listenForUpdates() {
         NotificationCenter.default.addObserver(forName: DataStore.shared.upcomingUpdatedNotification, object: nil, queue: nil) { _ in
-            self.tableView.reloadData()
+            self.tableView.reloadData(animated: true)
         }
     }
+
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

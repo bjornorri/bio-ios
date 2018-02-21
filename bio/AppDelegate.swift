@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setRootViewController()
         setupLoadingIndicator()
         Fabric.with([Crashlytics.self])
-        DataStore.shared.fetchData()
         return true
     }
 
@@ -39,11 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         showtimesVC.title = "Sýningar"
         showtimesVC.tabBarItem.image = IonIcons.image(withIcon: ion_ios_videocam, size: 30, color: UIColor.gray)
-        showtimesVC.tabBarItem.selectedImage = IonIcons.image(withIcon: ion_ios_videocam, size: 30, color: UIColor.bioOrange)
+        showtimesVC.tabBarItem.selectedImage = IonIcons.image(withIcon: ion_ios_videocam, size: 30, color: UIColor.bioGold)
         showtimesVC.setViewControllers([ShowtimeTableViewController()], animated: false)
         upcomingVC.title = "Væntanlegt"
         upcomingVC.tabBarItem.image = IonIcons.image(withIcon: ion_ios_film, size: 30, color: UIColor.gray)
-        upcomingVC.tabBarItem.selectedImage = IonIcons.image(withIcon: ion_ios_film, size: 30, color: UIColor.bioOrange)
+        upcomingVC.tabBarItem.selectedImage = IonIcons.image(withIcon: ion_ios_film, size: 30, color: UIColor.bioGold)
         upcomingVC.setViewControllers([UpcomingTableViewController()], animated: false)
 
         let tabVC = TabBarController()
