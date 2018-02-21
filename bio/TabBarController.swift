@@ -21,7 +21,8 @@ class TabBarController: UITabBarController {
     }
 
     func setupViews() {
-        circle.frame = CGRect(x: view.bounds.midX - 30, y: view.bounds.maxY - 80, width: 60, height: 60)
+        let size = CGFloat(64)
+        circle.frame = CGRect(x: view.bounds.midX - 30, y: view.bounds.maxY - 80, width: size, height: size)
         let circleGesture = UITapGestureRecognizer(target: self, action: #selector(toggleTabBar))
         circle.addGestureRecognizer(circleGesture)
 

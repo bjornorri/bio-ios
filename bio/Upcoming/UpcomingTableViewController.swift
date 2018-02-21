@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 import GradientLoadingBar
+import UserNotifications
 
 class UpcomingTableViewController: FadeTableViewController {
 
@@ -58,7 +59,7 @@ class UpcomingTableViewController: FadeTableViewController {
 
     private func showActionSheet(forMovie movie: Movie) {
         let actionSheet = UIAlertController(title: movie.title, message: nil, preferredStyle: .actionSheet)
-        let notifyAction = UIAlertAction(title: "Láta mig vita", style: .default, handler: nil)
+        let notifyAction = getNotifyAction(forMovie: movie)
         let imdbAction = UIAlertAction(title: "IMDb", style: .default, handler: { _ in
             self.presentIMDbController(forMovie: movie)
         })
@@ -79,4 +80,46 @@ class UpcomingTableViewController: FadeTableViewController {
         safariVC.preferredControlTintColor = UIColor.bioOrange
         present(safariVC, animated: true, completion: nil)
     }
+
+    private func showNotificationWarning() {
+        let alert = UIAlertController(title: "Hey!", message: "Þú ert með slökkt á tilkynningum. Vinsamlegast breyttu stillingunum til þess að fá tilkynningar frá okkur.", preferredStyle: .alert
+        )
+        let noAction = UIAlertAction(title: "Nei takk", style: .cancel, handler: nil)
+        let settingsAction = UIAlertAction(title: "Stillingar", style: .default) { _ in
+            self.openAppSettings()
+        }
+        alert.addAction(noAction)
+        alert.addAction(settingsAction)
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func openAppSettings() {
+        guard let url = URL(string: UIApplicationOpenSettingsURLString) else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
+
+    private func getNotifyAction(forMovie movie: Movie) -> UIAlertAction {
+        return movie.notify ? abortNotificationAction(forMovie: movie) : requestNotificationAction(forMovie: movie)
+    }
+
+    private func requestNotificationAction(forMovie movie: Movie) -> UIAlertAction {
+        return UIAlertAction(title: "Fá tilkynningu", style: .default) { _ in
+            if UIApplication.shared.isRegisteredForRemoteNotifications {
+                NotificationManager.shared.requestNotification(forMovie: movie)
+                return
+            }
+            NotificationManager.shared.registerForPushNotifications() { success in
+                success ? NotificationManager.shared.requestNotification(forMovie: movie) : self.showNotificationWarning()
+            }
+        }
+    }
+
+    private func abortNotificationAction(forMovie movie: Movie) -> UIAlertAction {
+        return UIAlertAction(title: "Hætta við tilkynningu", style: .destructive) { _ in
+            NotificationManager.shared.deleteNotification(forMovie: movie)
+        }
+    }
 }
+

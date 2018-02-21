@@ -22,19 +22,27 @@ class NotificationManager {
         })
     }
 
-    func registerForPushNotifications() {
+    func registerForPushNotifications(completion: ((Bool) -> Void)?) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
-            guard granted else { return }
-            self.getNotificationSettings()
+            guard granted else {
+                if let completion = completion { completion(false) }
+                return
+            }
+            self.getNotificationSettings(completion: completion)
         }
     }
 
-    private func getNotificationSettings() {
+    private func getNotificationSettings(completion: ((Bool) -> Void)?) {
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-            guard settings.authorizationStatus == .authorized else { return }
+            guard settings.authorizationStatus == .authorized else {
+                if let completion = completion { completion(false) }
+                return
+            }
             DispatchQueue.main.async {
                 UIApplication.shared.registerForRemoteNotifications()
+                if let completion = completion { completion(true) }
+                return
             }
         }
     }
@@ -48,5 +56,19 @@ class NotificationManager {
         guard let token = token else { return }
         guard let deviceId = UIDevice.current.identifierForVendor?.uuidString else { return }
         Api.registerDevice(withId: deviceId, apnsToken: token)
+    }
+
+    func requestNotification(forMovie movie: Movie) {
+        guard let deviceId = UIDevice.current.identifierForVendor?.uuidString else { return }
+        Api.createNotification(withDeviceId: deviceId, imdbId: movie.imdbId) { movies in
+            DataStore.shared.upcoming = movies
+        }
+    }
+
+    func deleteNotification(forMovie movie: Movie) {
+        guard let deviceId = UIDevice.current.identifierForVendor?.uuidString else { return }
+        Api.deleteNotification(withDeviceId: deviceId, imdbId: movie.imdbId) { movies in
+            DataStore.shared.upcoming = movies
+        }
     }
 }

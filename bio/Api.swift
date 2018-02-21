@@ -16,10 +16,10 @@ class Api {
 
     class func getShowtimes(handler: @escaping ([Movie]) -> Void) {
         let url = "\(baseURL)/showtimes"
-        Alamofire.request(url).responseData { response in
+        Alamofire.request(url).responseJSON { response in
             if let data = response.result.value {
-                let json = try? JSON(data: data)
-                let movies = Movie.fromJSON(json: json!)
+                let json = JSON(data)
+                let movies = Movie.fromJSON(json: json)
                 handler(movies)
             }
         }
@@ -43,5 +43,37 @@ class Api {
             "apnsToken": token
         ]
         Alamofire.request(url, method: .post, parameters: data, encoding: JSONEncoding.default, headers: nil)
+    }
+
+    class func createNotification(withDeviceId deviceId: String, imdbId: String, handler: @escaping ([Movie]) -> Void) {
+        let url = "\(baseURL)/notify"
+        let data = [
+            "deviceId": deviceId,
+            "imdbId": imdbId
+        ]
+        Alamofire.request(url, method: .post, parameters: data, encoding: JSONEncoding.default, headers: nil)
+            .responseJSON { response in
+                if let data = response.result.value {
+                    let json = JSON(data)
+                    let movies = Movie.fromJSON(json: json)
+                    handler(movies)
+                }
+        }
+    }
+
+    class func deleteNotification(withDeviceId deviceId: String, imdbId: String, handler: @escaping ([Movie]) -> Void) {
+        let url = "\(baseURL)/notify"
+        let data = [
+            "deviceId": deviceId,
+            "imdbId": imdbId
+        ]
+        Alamofire.request(url, method: .delete, parameters: data, encoding: JSONEncoding.default, headers: nil)
+            .responseJSON { response in
+                if let data = response.result.value {
+                    let json = JSON(data)
+                    let movies = Movie.fromJSON(json: json)
+                    handler(movies)
+                }
+        }
     }
 }

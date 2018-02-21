@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setRootViewController()
         setupLoadingIndicator()
         Fabric.with([Crashlytics.self])
-        NotificationManager.shared.registerForPushNotifications()
         DataStore.shared.fetchData()
         return true
     }
