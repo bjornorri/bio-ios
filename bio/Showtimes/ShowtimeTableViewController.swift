@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GradientLoadingBar
 
 class ShowtimeTableViewController: FadeTableViewController {
 

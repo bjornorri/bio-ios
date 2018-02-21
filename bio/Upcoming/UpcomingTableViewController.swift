@@ -8,8 +8,6 @@
 
 import UIKit
 import SafariServices
-import GradientLoadingBar
-import UserNotifications
 
 class UpcomingTableViewController: FadeTableViewController {
 
