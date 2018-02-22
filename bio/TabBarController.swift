@@ -73,7 +73,7 @@ class TabBarController: UITabBarController {
     private func setTabBar(visible: Bool) {
         let tabBarHeight = tabBar.frame.height
         let y = visible ? view.bounds.maxY - tabBarHeight : view.bounds.maxY
-        overlay.alpha = visible ? 0.8 : 0.0
+        overlay.alpha = visible ? 0.7 : 0.0
         tabBar.frame = tabBar.frame.offsetBy(dx: 0, dy: y - tabBar.frame.minY)
         circle.setTransformed(visible)
         circle.frame = visible ? tabBarCircleFrame() : normalCircleFrame()
