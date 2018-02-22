@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class ShowtimeDetailViewController: FadeTableViewController {
 
@@ -85,6 +86,46 @@ class ShowtimeDetailViewController: FadeTableViewController {
         guard let schedule = movie.showtimes?[index] else { return UITableViewCell(frame: CGRect.zero) }
         let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath) as! ScheduleCell
         cell.schedule = schedule
+        cell.delegate = self
         return cell
+    }
+
+    private func showActionSheet(forScreening screening: Screening) {
+        var title = "\(screening.time.timeString()) - \(screening.cinemaName!)"
+        if let room = screening.room {
+            let roomString = room.count < 2 ? "Salur \(room)" : room
+            title = "\(title) - \(roomString)"
+        }
+        var info = [String]()
+        if screening.three_d { info.append("3D") }
+        if screening.icelandic { info.append("Ísl. tal") }
+        let message = info.isEmpty ? nil : info.joined(separator: " - ")
+        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let buyAction = UIAlertAction(title: "Kaupa miða", style: .default, handler: { _ in
+            self.presentPurchaseController(withUrl: screening.purchaseURL)
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        actionSheet.addAction(buyAction)
+        actionSheet.addAction(cancelAction)
+        // Workaround for action sheet delay.
+        DispatchQueue.main.async {
+            self.present(actionSheet, animated: true, completion: nil)
+        }
+
+    }
+
+    private func presentPurchaseController(withUrl url: URL?) {
+        guard let url = url else { return }
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredBarTintColor = UIColor.black
+        safariVC.preferredControlTintColor = UIColor.bioYellow
+        present(safariVC, animated: true, completion: nil)
+    }
+}
+
+extension ShowtimeDetailViewController: ScreeningCellDelegate {
+
+    func didPressItem(withScreening screening: Screening) {
+        showActionSheet(forScreening: screening)
     }
 }

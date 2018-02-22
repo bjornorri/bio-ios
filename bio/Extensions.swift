@@ -33,7 +33,6 @@ extension UIImageView {
         layer.borderWidth = 1.0
         contentMode = .scaleAspectFill
         clipsToBounds = true
-        UIColor.yellow
     }
 }
 

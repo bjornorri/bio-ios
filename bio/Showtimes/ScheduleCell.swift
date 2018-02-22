@@ -10,6 +10,8 @@ import UIKit
 
 class ScheduleCell: UITableViewCell {
 
+    var delegate: ScreeningCellDelegate?
+
     var schedule: Schedule! {
         didSet {
             collectionView.reloadData()
@@ -79,8 +81,13 @@ extension ScheduleCell: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screeningCell", for: indexPath) as! ScreeningCell
+        cell.delegate = delegate
         cell.screening = schedule.screenings[indexPath.row]
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath)
     }
 }
 

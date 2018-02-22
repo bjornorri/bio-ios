@@ -22,7 +22,7 @@ class Schedule: NSObject {
 
     class func fromJSON(_ json: JSON) -> Schedule? {
         guard let cinema = json["cinema_name"].string else { return nil }
-        let screenings = Screening.fromJSON(json["schedule"])
+        let screenings = Screening.fromJSON(json["schedule"], cinemaName: cinema)
         if screenings.isEmpty { return nil }
         return Schedule(cinema: cinema, screenings: screenings)
     }

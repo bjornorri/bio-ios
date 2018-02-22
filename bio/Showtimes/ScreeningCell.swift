@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol ScreeningCellDelegate {
+    func didPressItem(withScreening screening: Screening)
+}
+
 class ScreeningCell: UICollectionViewCell {
+
+    var delegate: ScreeningCellDelegate?
 
     var screening: Screening! {
         didSet {
@@ -36,6 +42,7 @@ class ScreeningCell: UICollectionViewCell {
         button.layer.cornerRadius = 4
         button.clipsToBounds = true
         button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        button.addTarget(self, action: #selector(didPressButton), for: .touchUpInside)
         contentView.addSubview(button)
     }
 
@@ -56,5 +63,10 @@ class ScreeningCell: UICollectionViewCell {
             button.layer.borderColor = UIColor.gray.withAlphaComponent(0.8).cgColor
         }
         contentView.setNeedsLayout()
+    }
+
+    @objc func didPressButton() {
+        guard let delegate = delegate else { return }
+        delegate.didPressItem(withScreening: screening)
     }
 }
