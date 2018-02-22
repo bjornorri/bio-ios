@@ -17,20 +17,24 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        delegate = self
         setupViews()
     }
 
     func setupViews() {
         let size = CGFloat(64)
         circle.frame = CGRect(x: view.bounds.midX - 30, y: view.bounds.maxY - 80, width: size, height: size)
-        let circleGesture = UITapGestureRecognizer(target: self, action: #selector(toggleTabBar))
+        let circleGesture = TouchGestureRecognizer(target: self, action: #selector(toggleTabBar))
         circle.addGestureRecognizer(circleGesture)
 
         overlay.frame = view.bounds
         overlay.backgroundColor = UIColor.black
         overlay.alpha = 0.0
-        let overlayGesture = UITapGestureRecognizer(target: self, action: #selector(toggleTabBar))
+        let overlayGesture = TouchGestureRecognizer(target: self, action: #selector(toggleTabBar))
         overlay.addGestureRecognizer(overlayGesture)
+
+        let tabBarGesture = TouchGestureRecognizer(target: self, action: #selector(touchedTabBar))
+        tabBar.addGestureRecognizer(tabBarGesture)
 
         view.insertSubview(overlay, belowSubview: tabBar)
         view.addSubview(circle)
@@ -69,14 +73,29 @@ class TabBarController: UITabBarController {
     private func setTabBar(visible: Bool) {
         let tabBarHeight = tabBar.frame.height
         let y = visible ? view.bounds.maxY - tabBarHeight : view.bounds.maxY
-        overlay.alpha = visible ? 0.5 : 0.0
+        overlay.alpha = visible ? 0.8 : 0.0
         tabBar.frame = tabBar.frame.offsetBy(dx: 0, dy: y - tabBar.frame.minY)
         circle.setTransformed(visible)
         circle.frame = visible ? tabBarCircleFrame() : normalCircleFrame()
     }
 
-    @objc func toggleTabBar() {
+    @objc func toggleTabBar(gesture: UIGestureRecognizer) {
         setTabBar(visible: tabBar.isHidden, animated: true)
+    }
+
+    @objc func touchedTabBar(gesture: TouchGestureRecognizer) {
+        guard let viewControllers = viewControllers else { return }
+        let point = gesture.location(in: tabBar)
+        let subviews = tabBar.subviews.filter{ $0.isUserInteractionEnabled }.sorted(by: { $0.frame.minX < $1.frame.minX })
+        for (i, item) in subviews.enumerated() {
+            if item.frame.contains(point) {
+                if tabBarController(self, shouldSelect: viewControllers[i]) {
+                    selectedIndex = i
+                    tabBar(tabBar, didSelect: tabBar.items![i])
+                }
+                return
+            }
+        }
     }
 
     private func setCircle(visible: Bool, animated: Bool) {
@@ -121,7 +140,6 @@ class TabBarController: UITabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         setTabBar(visible: false, animated: true)
     }
-
 }
 
 extension TabBarController: UINavigationControllerDelegate {
@@ -136,5 +154,18 @@ extension TabBarController: UINavigationControllerDelegate {
         if navigationController.viewControllers.count == 1 {
             setCircle(visible: true, animated: true)
         }
+    }
+}
+
+extension TabBarController: UITabBarControllerDelegate {
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if selectedViewController == nil || viewController == selectedViewController {
+            return false
+        }
+        guard let fromView = selectedViewController?.view else { return true }
+        guard let toView = viewController.view else { return true }
+        UIView.transition(from: fromView, to: toView, duration: 0.1, options: [.transitionCrossDissolve], completion: nil)
+        return true
     }
 }

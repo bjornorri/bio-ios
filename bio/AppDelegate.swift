@@ -38,16 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         showtimesVC.title = "Sýningar"
         showtimesVC.tabBarItem.image = IonIcons.image(withIcon: ion_ios_videocam, size: 30, color: UIColor.gray)
-        showtimesVC.tabBarItem.selectedImage = IonIcons.image(withIcon: ion_ios_videocam, size: 30, color: UIColor.bioGold)
+        showtimesVC.tabBarItem.selectedImage = IonIcons.image(withIcon: ion_ios_videocam, size: 30, color: UIColor.bioYellow)
         showtimesVC.setViewControllers([ShowtimeTableViewController()], animated: false)
         upcomingVC.title = "Væntanlegt"
         upcomingVC.tabBarItem.image = IonIcons.image(withIcon: ion_ios_film, size: 30, color: UIColor.gray)
-        upcomingVC.tabBarItem.selectedImage = IonIcons.image(withIcon: ion_ios_film, size: 30, color: UIColor.bioGold)
+        upcomingVC.tabBarItem.selectedImage = IonIcons.image(withIcon: ion_ios_film, size: 30, color: UIColor.bioYellow)
         upcomingVC.setViewControllers([UpcomingTableViewController()], animated: false)
 
         let tabVC = TabBarController()
         tabVC.tabBar.tintColor = UIColor.white
-        tabVC.tabBar.barTintColor = UIColor.bioGray
+        tabVC.tabBar.barTintColor = UIColor.clear
+        tabVC.tabBar.backgroundImage = UIImage()
+        tabVC.tabBar.shadowImage = UIImage()
         tabVC.setViewControllers([showtimesVC, upcomingVC], animated: false)
 
         window = UIWindow(frame: UIScreen.main.bounds)

@@ -17,6 +17,7 @@
 		983AF2A32037C9BB00F88A69 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983AF2A22037C9BB00F88A69 /* GradientView.swift */; };
 		9849B7C1200C1A49003DC853 /* ShowtimeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849B7C0200C1A49003DC853 /* ShowtimeDetailViewController.swift */; };
 		9849B7C3200C2CE0003DC853 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9849B7C2200C2CE0003DC853 /* MovieView.swift */; };
+		98584889203E40BE00C7E54B /* TouchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98584888203E40BE00C7E54B /* TouchGestureRecognizer.swift */; };
 		9869092E203305650074B7DD /* UpcomingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9869092D203305650074B7DD /* UpcomingCell.swift */; };
 		986E927D203700D800C2368B /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986E927C203700D800C2368B /* MovieCell.swift */; };
 		9873FF5C203B26CA00E49E18 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873FF5B203B26CA00E49E18 /* TabBarController.swift */; };
@@ -51,6 +52,7 @@
 		983AF2A22037C9BB00F88A69 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		9849B7C0200C1A49003DC853 /* ShowtimeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowtimeDetailViewController.swift; sourceTree = "<group>"; };
 		9849B7C2200C2CE0003DC853 /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
+		98584888203E40BE00C7E54B /* TouchGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchGestureRecognizer.swift; sourceTree = "<group>"; };
 		9869092D203305650074B7DD /* UpcomingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingCell.swift; sourceTree = "<group>"; };
 		986E927C203700D800C2368B /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		9873FF5B203B26CA00E49E18 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				98BCEED32007CF420014A521 /* Extensions.swift */,
 				989824B52033126F00248F87 /* Utils.swift */,
 				9873FF5B203B26CA00E49E18 /* TabBarController.swift */,
+				98584888203E40BE00C7E54B /* TouchGestureRecognizer.swift */,
 				98BDA58F200793FB00A26A40 /* Models */,
 				98BDA58A20078F8B00A26A40 /* Showtimes */,
 				98A4C19A2030E50F00BD8812 /* Upcoming */,
@@ -396,6 +399,7 @@
 				9849B7C3200C2CE0003DC853 /* MovieView.swift in Sources */,
 				98E68B3A2007899900C55173 /* AppDelegate.swift in Sources */,
 				98A4C19C2030E55200BD8812 /* UpcomingTableViewController.swift in Sources */,
+				98584889203E40BE00C7E54B /* TouchGestureRecognizer.swift in Sources */,
 				98B702D62019E96600289F3D /* ScheduleCell.swift in Sources */,
 				981CAF7C203B3B3B00065591 /* FloatingCircle.swift in Sources */,
 				98BCEED22007CC950014A521 /* ShowtimeCell.swift in Sources */,

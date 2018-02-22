@@ -17,7 +17,7 @@ class UpcomingCell: MovieCell {
     override func setupViews() {
         super.setupViews()
 
-        notifyIcon.image = IonIcons.image(withIcon: ion_ios_bell, size: 24, color: UIColor.bioGold)
+        notifyIcon.image = IonIcons.image(withIcon: ion_ios_bell, size: 24, color: UIColor.bioYellow)
 
         titleLabel.numberOfLines = 1
         infoLabel.textColor = UIColor.white

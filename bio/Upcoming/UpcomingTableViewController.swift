@@ -76,7 +76,7 @@ class UpcomingTableViewController: FadeTableViewController {
         guard let url = URL(string: "https://www.imdb.com/title/tt\(movie.imdbId)") else { return }
         let safariVC = SFSafariViewController(url: url)
         safariVC.preferredBarTintColor = UIColor.black
-        safariVC.preferredControlTintColor = UIColor.bioOrange
+        safariVC.preferredControlTintColor = UIColor.bioYellow
         present(safariVC, animated: true, completion: nil)
     }
 

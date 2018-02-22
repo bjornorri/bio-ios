@@ -17,7 +17,7 @@ extension UIColor {
     }
 
     static let bioGray = UIColor(red: 31, green: 31, blue: 31)
-    static let bioGold = UIColor(red: 156, green: 110, blue: 41)
+    static let bioYellow = UIColor(red: 226, green: 176, blue: 28)
     static let bioOrange = UIColor.orange
 }
 
@@ -33,6 +33,7 @@ extension UIImageView {
         layer.borderWidth = 1.0
         contentMode = .scaleAspectFill
         clipsToBounds = true
+        UIColor.yellow
     }
 }
 
