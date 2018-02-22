@@ -92,6 +92,8 @@ class TabBarController: UITabBarController {
                 if tabBarController(self, shouldSelect: viewControllers[i]) {
                     selectedIndex = i
                     tabBar(tabBar, didSelect: tabBar.items![i])
+                } else {
+                    toggleTabBar(gesture: gesture)
                 }
                 return
             }
