@@ -22,7 +22,7 @@ class NotificationManager {
         })
     }
 
-    func registerForPushNotifications(completion: ((Bool) -> Void)?) {
+    func registerForPushNotifications(_ completion: ((Bool) -> Void)? = nil) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
             guard granted else {

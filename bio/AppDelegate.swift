@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setRootViewController()
         setupLoadingIndicator()
         Fabric.with([Crashlytics.self])
+        if UIApplication.shared.isRegisteredForRemoteNotifications {
+            NotificationManager.shared.registerForPushNotifications()
+        }
         return true
     }
 
