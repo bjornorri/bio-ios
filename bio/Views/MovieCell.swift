@@ -21,11 +21,11 @@ class MovieCell: MMParallaxCell, FadeView {
             posterView.playHidden = playHidden
         }
     }
-    var selectedAlpha: CGFloat {
-        return 0.5
-    }
     var normalAlpha: CGFloat {
         return 0.3
+    }
+    var selectedAlpha: CGFloat {
+        return normalAlpha + 0.2
     }
 
     var foreground = UIView()
@@ -52,7 +52,7 @@ class MovieCell: MMParallaxCell, FadeView {
 
         // Backdrop
         backdropView.backgroundColor = UIColor.clear
-        backdropView.alpha = 0.5
+        backdropView.alpha = normalAlpha
 
         // Title
         titleLabel.textColor = UIColor.white

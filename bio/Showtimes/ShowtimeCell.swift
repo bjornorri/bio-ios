@@ -19,10 +19,6 @@ class ShowtimeCell: MovieCell {
         return 0.4
     }
 
-    override var selectedAlpha: CGFloat {
-        return 0.6
-    }
-
     override func setupViews() {
         super.setupViews()
         posterView.playHidden = true

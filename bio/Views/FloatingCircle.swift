@@ -16,7 +16,7 @@ class FloatingCircle: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        background.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        background.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         background.layer.borderColor = UIColor.bioYellow.cgColor
         background.layer.borderWidth = 1.0
         line1.backgroundColor = UIColor.white

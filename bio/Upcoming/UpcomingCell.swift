@@ -14,6 +14,10 @@ class UpcomingCell: MovieCell {
     let infoLabel = UILabel()
     let notifyIcon = UIImageView()
 
+    override var normalAlpha: CGFloat {
+        return 0.25
+    }
+    
     override func setupViews() {
         super.setupViews()
 
