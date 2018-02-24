@@ -102,8 +102,4 @@ class MovieCell: MMParallaxCell, FadeView {
             self.backdropView.alpha = selected ? selectedAlpha : normalAlpha
         }
     }
-
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        setSelected(highlighted, animated: animated)
-    }
 }

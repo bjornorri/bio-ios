@@ -14,7 +14,6 @@ protocol FadeView {
 
 class FadeTableViewController: UITableViewController {
 
-
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let header = tableView.tableHeaderView {
             updateMask(forView: header)
@@ -36,3 +35,4 @@ class FadeTableViewController: UITableViewController {
         v.mask?.frame = CGRect(x: 0, y: maskY, width: v.bounds.width, height: v.bounds.height - maskY)
     }
 }
+

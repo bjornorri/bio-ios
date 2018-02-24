@@ -19,6 +19,7 @@ class ShowtimeTableViewController: FadeTableViewController {
         let rowHeight = tableView.bounds.width * (9.0 / 16.0)
         tableView.estimatedRowHeight = rowHeight
         tableView.rowHeight = rowHeight
+        registerForPreviewing(with: self, sourceView: tableView)
         listenForUpdates()
     }
 
@@ -54,5 +55,21 @@ class ShowtimeTableViewController: FadeTableViewController {
         let detailVC = ShowtimeDetailViewController()
         detailVC.movie = movies[indexPath.row]
         show(detailVC, sender: nil)
+    }
+}
+
+extension ShowtimeTableViewController: UIViewControllerPreviewingDelegate {
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location),
+        let movie = DataStore.shared.showtimes?[indexPath.row] else { return nil }
+        previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
+        let detailVC = ShowtimeDetailViewController()
+        detailVC.movie = movie
+        return detailVC
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: nil)
     }
 }

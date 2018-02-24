@@ -20,6 +20,7 @@ class UpcomingTableViewController: FadeTableViewController {
         let rowHeight = round(UIScreen.main.bounds.width * (3.0 / 8.0)) + 16
         tableView.estimatedRowHeight = rowHeight
         tableView.rowHeight = rowHeight
+        registerForPreviewing(with: self, sourceView: tableView)
         listenForUpdates()
     }
 
@@ -72,11 +73,16 @@ class UpcomingTableViewController: FadeTableViewController {
         }
     }
 
-    private func presentIMDbController(forMovie movie: Movie) {
-        guard let url = URL(string: "https://www.imdb.com/title/tt\(movie.imdbId)") else { return }
+    private func imdbController(forMovie movie: Movie) -> SFSafariViewController? {
+        guard let url = URL(string: "https://www.imdb.com/title/tt\(movie.imdbId)") else { return nil }
         let safariVC = SFSafariViewController(url: url)
         safariVC.preferredBarTintColor = UIColor.black
         safariVC.preferredControlTintColor = UIColor.bioYellow
+        return safariVC
+    }
+
+    private func presentIMDbController(forMovie movie: Movie) {
+        guard let safariVC = imdbController(forMovie: movie) else { return }
         present(safariVC, animated: true, completion: nil)
     }
 
@@ -122,3 +128,17 @@ class UpcomingTableViewController: FadeTableViewController {
     }
 }
 
+extension UpcomingTableViewController: UIViewControllerPreviewingDelegate {
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location),
+            let movie = DataStore.shared.upcoming?[indexPath.row] else { return nil }
+        previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
+        let imdbVC = imdbController(forMovie: movie)
+        return imdbVC
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: nil)
+    }
+}

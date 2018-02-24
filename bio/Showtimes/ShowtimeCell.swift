@@ -38,3 +38,4 @@ class ShowtimeCell: MovieCell {
         imdbView.rating = movie.imdbRating
     }
 }
+
