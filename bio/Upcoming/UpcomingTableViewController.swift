@@ -139,6 +139,6 @@ extension UpcomingTableViewController: UIViewControllerPreviewingDelegate {
     }
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        show(viewControllerToCommit, sender: nil)
+        present(viewControllerToCommit, animated: false, completion: nil)
     }
 }
