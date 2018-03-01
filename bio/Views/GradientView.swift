@@ -35,7 +35,7 @@ class GradientView: UIView {
 
     private func updateEndpoint() {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let endPointY = (statusBarHeight * 2) / bounds.height
+        let endPointY = (statusBarHeight + 10) / bounds.height
         gradientLayer.endPoint = CGPoint(x: 0.5, y: endPointY)
     }
 }
