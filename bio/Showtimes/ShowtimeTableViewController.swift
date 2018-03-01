@@ -36,6 +36,7 @@ class ShowtimeTableViewController: FadeTableViewController {
     private func setupLoadingIndicator() {
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = UIColor.white
+        refreshControl?.layer.zPosition = -1
         refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
         tableView.contentOffset = CGPoint(x:0, y: -refreshControl!.frame.size.height)
         DataStore.shared.loadingShowtimes.subscribe { loading in

@@ -37,6 +37,7 @@ class UpcomingTableViewController: FadeTableViewController {
     private func setupLoadingIndicator() {
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = UIColor.white
+        refreshControl?.layer.zPosition = -1
         refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
         DataStore.shared.loadingUpcoming.subscribe { loading in
             loading ? self.refreshControl?.beginRefreshing() : self.refreshControl?.endRefreshing()
