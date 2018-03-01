@@ -23,13 +23,13 @@ class ShowtimeTableViewController: FadeTableViewController {
         tableView.estimatedRowHeight = rowHeight
         tableView.rowHeight = rowHeight
         registerForPreviewing(with: self, sourceView: tableView)
-        listenForUpdates()
         setupLoadingIndicator()
+        listenForUpdates()
     }
 
     private func listenForUpdates() {
         DataStore.shared.showtimes.subscribe { movies in
-            self.tableView.reloadData()
+            self.tableView.reloadData(animated: !self.refreshControl!.isRefreshing)
         }.disposed(by: disposeBag)
     }
 

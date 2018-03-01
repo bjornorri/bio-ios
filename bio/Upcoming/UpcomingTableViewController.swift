@@ -24,13 +24,13 @@ class UpcomingTableViewController: FadeTableViewController {
         tableView.estimatedRowHeight = rowHeight
         tableView.rowHeight = rowHeight
         registerForPreviewing(with: self, sourceView: tableView)
-        listenForUpdates()
         setupLoadingIndicator()
+        listenForUpdates()
     }
 
     private func listenForUpdates() {
         DataStore.shared.upcoming.subscribe { movies in
-            self.tableView.reloadData()
+            self.tableView.reloadData(animated: !self.refreshControl!.isRefreshing)
         }.disposed(by: disposeBag)
     }
 
@@ -39,6 +39,7 @@ class UpcomingTableViewController: FadeTableViewController {
         refreshControl?.tintColor = UIColor.white
         refreshControl?.layer.zPosition = -1
         refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
+        tableView.contentOffset = CGPoint(x:0, y: -refreshControl!.frame.size.height)
         DataStore.shared.loadingUpcoming.subscribe { loading in
             loading ? self.refreshControl?.beginRefreshing() : self.refreshControl?.endRefreshing()
             }.disposed(by: disposeBag)
