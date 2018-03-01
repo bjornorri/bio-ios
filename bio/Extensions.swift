@@ -122,10 +122,3 @@ extension UITableView {
     }
 }
 
-extension Variable {
-
-    func subscribe(_ handler: @escaping ((Element) -> Void)) -> Disposable {
-        return asObservable().subscribe(onNext: handler)
-    }
-}
-

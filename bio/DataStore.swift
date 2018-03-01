@@ -8,6 +8,7 @@
 import Foundation
 import Kingfisher
 import RxSwift
+import RxCocoa
 
 class DataStore {
 
@@ -16,10 +17,10 @@ class DataStore {
     let showtimesUpdatedNotification = NSNotification.Name("showtimesUpdated")
     let upcomingUpdatedNotification = NSNotification.Name("upcomingUpdated")
 
-    let showtimes = Variable<[Movie]?>(nil)
-    let upcoming = Variable<[Movie]?>(nil)
-    let loadingShowtimes = Variable<Bool>(false)
-    let loadingUpcoming = Variable<Bool>(false)
+    let showtimes = BehaviorRelay<[Movie]?>(value: nil)
+    let upcoming = BehaviorRelay<[Movie]?>(value: nil)
+    let loadingShowtimes = BehaviorRelay<Bool>(value: false)
+    let loadingUpcoming = BehaviorRelay<Bool>(value: false)
 
     private init() {
         NotificationCenter.default.addObserver(forName: .UIApplicationWillEnterForeground, object: nil, queue: nil) { _ in
@@ -28,20 +29,20 @@ class DataStore {
     }
 
     func fetchShowtimes() {
-        loadingShowtimes.value = true
+        loadingShowtimes.accept(true)
         Api.getShowtimes { movies in
             self.cacheImages(forMovies: movies)
-            self.showtimes.value = movies
-            self.loadingShowtimes.value = false
+            self.showtimes.accept(movies)
+            self.loadingShowtimes.accept(false)
         }
     }
 
     func fetchUpcoming() {
-        loadingUpcoming.value = true
+        loadingUpcoming.accept(true)
         Api.getUpcoming { movies in
             self.cacheImages(forMovies: movies)
-            self.upcoming.value = movies
-            self.loadingUpcoming.value = false
+            self.upcoming.accept(movies)
+            self.loadingUpcoming.accept(false)
         }
     }
 
@@ -52,13 +53,13 @@ class DataStore {
 
     func requestNotification(forMovie movie: Movie) {
         Api.createNotification(withDeviceId: getDeviceId(), imdbId: movie.imdbId) { movies in
-            DataStore.shared.upcoming.value = movies
+            self.upcoming.accept(movies)
         }
     }
 
     func deleteNotification(forMovie movie: Movie) {
         Api.deleteNotification(withDeviceId: getDeviceId(), imdbId: movie.imdbId) { movies in
-            DataStore.shared.upcoming.value = movies
+            self.upcoming.accept(movies)
         }
     }
 

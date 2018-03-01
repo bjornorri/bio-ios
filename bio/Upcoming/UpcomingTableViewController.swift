@@ -40,9 +40,9 @@ class UpcomingTableViewController: FadeTableViewController {
         refreshControl?.layer.zPosition = -1
         refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
         tableView.contentOffset = CGPoint(x:0, y: -refreshControl!.frame.size.height)
-        DataStore.shared.loadingUpcoming.subscribe { loading in
+        DataStore.shared.loadingUpcoming.asObservable().subscribe(onNext: { loading in
             loading ? self.refreshControl?.beginRefreshing() : self.refreshControl?.endRefreshing()
-            }.disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
     }
 
     @objc private func fetchData() {
