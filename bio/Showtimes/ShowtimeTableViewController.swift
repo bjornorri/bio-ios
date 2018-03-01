@@ -24,12 +24,27 @@ class ShowtimeTableViewController: FadeTableViewController {
         tableView.rowHeight = rowHeight
         registerForPreviewing(with: self, sourceView: tableView)
         listenForUpdates()
+        setupLoadingIndicator()
     }
 
     private func listenForUpdates() {
         DataStore.shared.showtimes.subscribe { movies in
             self.tableView.reloadData()
         }.disposed(by: disposeBag)
+    }
+
+    private func setupLoadingIndicator() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = UIColor.white
+        refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
+        tableView.contentOffset = CGPoint(x:0, y: -refreshControl!.frame.size.height)
+        DataStore.shared.loadingShowtimes.subscribe { loading in
+            loading ? self.refreshControl?.beginRefreshing() : self.refreshControl?.endRefreshing()
+        }.disposed(by: disposeBag)
+    }
+
+    @objc private func fetchData() {
+        DataStore.shared.fetchShowtimes()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

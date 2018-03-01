@@ -25,12 +25,26 @@ class UpcomingTableViewController: FadeTableViewController {
         tableView.rowHeight = rowHeight
         registerForPreviewing(with: self, sourceView: tableView)
         listenForUpdates()
+        setupLoadingIndicator()
     }
 
     private func listenForUpdates() {
         DataStore.shared.upcoming.subscribe { movies in
             self.tableView.reloadData()
         }.disposed(by: disposeBag)
+    }
+
+    private func setupLoadingIndicator() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = UIColor.white
+        refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
+        DataStore.shared.loadingUpcoming.subscribe { loading in
+            loading ? self.refreshControl?.beginRefreshing() : self.refreshControl?.endRefreshing()
+            }.disposed(by: disposeBag)
+    }
+
+    @objc private func fetchData() {
+        DataStore.shared.fetchUpcoming()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
