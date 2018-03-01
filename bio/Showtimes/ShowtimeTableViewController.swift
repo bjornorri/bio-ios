@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class ShowtimeTableViewController: FadeTableViewController {
+
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +27,9 @@ class ShowtimeTableViewController: FadeTableViewController {
     }
 
     private func listenForUpdates() {
-        NotificationCenter.default.addObserver(forName: DataStore.shared.showtimesUpdatedNotification, object: nil, queue: nil) { _ in
-            self.tableView.reloadData(animated: true)
-        }
+        DataStore.shared.showtimes.subscribe { movies in
+            self.tableView.reloadData()
+        }.disposed(by: disposeBag)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -34,7 +37,7 @@ class ShowtimeTableViewController: FadeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let movies = DataStore.shared.showtimes else { return 0 }
+        guard let movies = DataStore.shared.showtimes.value else { return 0 }
         return movies.count
     }
 
@@ -44,14 +47,14 @@ class ShowtimeTableViewController: FadeTableViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? MovieCell else { return }
-        if let movies = DataStore.shared.showtimes {
+        if let movies = DataStore.shared.showtimes.value {
             let movie = movies[indexPath.row]
             cell.movie = movie
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let movies = DataStore.shared.showtimes else { return }
+        guard let movies = DataStore.shared.showtimes.value else { return }
         let detailVC = ShowtimeDetailViewController()
         detailVC.movie = movies[indexPath.row]
         show(detailVC, sender: nil)
@@ -62,7 +65,7 @@ extension ShowtimeTableViewController: UIViewControllerPreviewingDelegate {
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location),
-        let movie = DataStore.shared.showtimes?[indexPath.row] else { return nil }
+        let movie = DataStore.shared.showtimes.value?[indexPath.row] else { return nil }
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
         let detailVC = ShowtimeDetailViewController()
         detailVC.movie = movie

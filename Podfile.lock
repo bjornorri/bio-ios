@@ -3,10 +3,12 @@ PODS:
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
   - Fabric (1.7.2)
-  - GradientLoadingBar (1.1.9)
   - ionicons (2.1.1)
   - Kingfisher (4.6.1)
   - MMParallaxCell (1.2)
+  - RxCocoa (4.1.2):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.1.2)
   - SnapKit (4.0.0)
   - SwiftyJSON (4.0.0)
   - XCDYouTubeKit (2.5.6)
@@ -15,10 +17,11 @@ DEPENDENCIES:
   - Alamofire (~> 4.5)
   - Crashlytics
   - Fabric
-  - GradientLoadingBar (~> 1.0)
   - ionicons
   - Kingfisher
   - MMParallaxCell
+  - RxCocoa (~> 4.0)
+  - RxSwift (~> 4.0)
   - SnapKit (~> 4.0)
   - SwiftyJSON
   - XCDYouTubeKit (~> 2.5)
@@ -27,14 +30,15 @@ SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
-  GradientLoadingBar: 903b340157956c72071d02c58f2bad44785f3bb9
   ionicons: 630bcd2c2970741c3359e3a35ad544e71d3c086b
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   MMParallaxCell: 9c9045097743b725076c38ed2c53e3790e90bd14
+  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
+  RxSwift: e49536837d9901277638493ea537394d4b55f570
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   XCDYouTubeKit: dccfe0c17dd5c5187969ec27e93069573badb08f
 
-PODFILE CHECKSUM: 592d114ee803ea64ce3f40c2c77bea3c68c51f21
+PODFILE CHECKSUM: 7c4c3ac530b47ab75f3f579e969be8778984c033
 
 COCOAPODS: 1.4.0

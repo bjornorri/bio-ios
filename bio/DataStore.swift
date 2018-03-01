@@ -7,6 +7,7 @@
 
 import Foundation
 import Kingfisher
+import RxSwift
 
 class DataStore {
 
@@ -14,68 +15,33 @@ class DataStore {
 
     let showtimesUpdatedNotification = NSNotification.Name("showtimesUpdated")
     let upcomingUpdatedNotification = NSNotification.Name("upcomingUpdated")
-    let loadingDataUpdatedNotification = NSNotification.Name("loadingDataUpdated")
 
-    var showtimes: [Movie]? {
-        didSet {
-            NotificationCenter.default.post(name: showtimesUpdatedNotification, object: nil)
-        }
-    }
-
-    var upcoming: [Movie]? {
-        didSet {
-            NotificationCenter.default.post(name: upcomingUpdatedNotification, object: nil)
-        }
-    }
-
-    private var loadingShowtimes = false {
-        didSet {
-            loadingData = loadingShowtimes || loadingUpcoming || loadingNotification
-        }
-    }
-    private var loadingUpcoming = false {
-        didSet {
-            loadingData = loadingShowtimes || loadingUpcoming || loadingNotification
-        }
-    }
-
-    private var loadingNotification = false {
-        didSet {
-            loadingData = loadingShowtimes || loadingUpcoming || loadingNotification
-        }
-    }
-
-    var loadingData = false {
-        didSet {
-            guard loadingData != oldValue else { return }
-            NotificationCenter.default.post(name: loadingDataUpdatedNotification, object: nil)
-        }
-    }
+    let showtimes = Variable<[Movie]?>(nil)
+    let upcoming = Variable<[Movie]?>(nil)
+    let loadingShowtimes = Variable<Bool>(false)
+    let loadingUpcoming = Variable<Bool>(false)
 
     private init() {
-        NotificationCenter.default.addObserver(forName: .UIApplicationDidFinishLaunching, object: nil, queue: nil) { _ in
-            self.fetchData()
-        }
         NotificationCenter.default.addObserver(forName: .UIApplicationWillEnterForeground, object: nil, queue: nil) { _ in
             self.fetchData()
         }
     }
 
     func fetchShowtimes() {
-        loadingShowtimes = true
+        loadingShowtimes.value = true
         Api.getShowtimes { movies in
             self.cacheImages(forMovies: movies)
-            self.showtimes = movies
-            self.loadingShowtimes = false
+            self.showtimes.value = movies
+            self.loadingShowtimes.value = false
         }
     }
 
     func fetchUpcoming() {
-        loadingUpcoming = true
+        loadingUpcoming.value = true
         Api.getUpcoming { movies in
             self.cacheImages(forMovies: movies)
-            self.upcoming = movies
-            self.loadingUpcoming = false
+            self.upcoming.value = movies
+            self.loadingUpcoming.value = false
         }
     }
 
@@ -85,18 +51,14 @@ class DataStore {
     }
 
     func requestNotification(forMovie movie: Movie) {
-        loadingNotification = true
         Api.createNotification(withDeviceId: getDeviceId(), imdbId: movie.imdbId) { movies in
-            DataStore.shared.upcoming = movies
-            self.loadingNotification = false
+            DataStore.shared.upcoming.value = movies
         }
     }
 
     func deleteNotification(forMovie movie: Movie) {
-        loadingNotification = true
         Api.deleteNotification(withDeviceId: getDeviceId(), imdbId: movie.imdbId) { movies in
-            DataStore.shared.upcoming = movies
-            self.loadingNotification = false
+            DataStore.shared.upcoming.value = movies
         }
     }
 

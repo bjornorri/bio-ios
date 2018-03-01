@@ -14,6 +14,7 @@ protocol FadeView {
 
 class FadeTableViewController: UITableViewController {
 
+
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let header = tableView.tableHeaderView {
             updateMask(forView: header)

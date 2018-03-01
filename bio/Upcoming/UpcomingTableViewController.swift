@@ -8,8 +8,11 @@
 
 import UIKit
 import SafariServices
+import RxSwift
 
 class UpcomingTableViewController: FadeTableViewController {
+
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +28,9 @@ class UpcomingTableViewController: FadeTableViewController {
     }
 
     private func listenForUpdates() {
-        NotificationCenter.default.addObserver(forName: DataStore.shared.upcomingUpdatedNotification, object: nil, queue: nil) { _ in
-            self.tableView.reloadData(animated: true)
-        }
+        DataStore.shared.upcoming.subscribe { movies in
+            self.tableView.reloadData()
+        }.disposed(by: disposeBag)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,7 +38,7 @@ class UpcomingTableViewController: FadeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataStore.shared.upcoming?.count ?? 0
+        return DataStore.shared.upcoming.value?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,7 +47,7 @@ class UpcomingTableViewController: FadeTableViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? MovieCell else { return }
-        if let movies = DataStore.shared.upcoming {
+        if let movies = DataStore.shared.upcoming.value {
             let movie = movies[indexPath.row]
             cell.movie = movie
         }
@@ -52,7 +55,7 @@ class UpcomingTableViewController: FadeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let movie = DataStore.shared.upcoming?[indexPath.row] else { return }
+        guard let movie = DataStore.shared.upcoming.value?[indexPath.row] else { return }
         showActionSheet(forMovie: movie)
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -132,7 +135,7 @@ extension UpcomingTableViewController: UIViewControllerPreviewingDelegate {
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location),
-            let movie = DataStore.shared.upcoming?[indexPath.row] else { return nil }
+            let movie = DataStore.shared.upcoming.value?[indexPath.row] else { return nil }
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
         let imdbVC = imdbController(forMovie: movie)
         return imdbVC

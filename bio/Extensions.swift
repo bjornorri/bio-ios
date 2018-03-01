@@ -8,6 +8,7 @@
 
 import AVKit
 import UIKit
+import RxSwift
 import XCDYouTubeKit
 
 extension UIColor {
@@ -118,6 +119,13 @@ extension UITableView {
         UIView.transition(with: self, duration: 0.2, options: .transitionCrossDissolve, animations: {
             self.reloadData()
         })
+    }
+}
+
+extension Variable {
+
+    func subscribe(_ handler: @escaping ((Element) -> Void)) -> Disposable {
+        return asObservable().subscribe(onNext: handler)
     }
 }
 
