@@ -53,12 +53,15 @@ class Api {
         Alamofire.request(url, method: .post, parameters: data, encoding: JSONEncoding.default, headers: nil)
     }
 
-    class func createNotification(withDeviceId deviceId: String, imdbId: String, handler: @escaping ([Movie]) -> Void) {
+    class func createNotification(withDeviceId deviceId: String, imdbId: String, expectedDate: Date?, handler: @escaping ([Movie]) -> Void) {
         let url = "\(baseURL)/notify"
-        let data = [
+        var data = [
             "deviceId": deviceId,
             "imdbId": imdbId
         ]
+        if let date = expectedDate {
+            data["expectedDate"] = date.dateString()
+        }
         Alamofire.request(url, method: .post, parameters: data, encoding: JSONEncoding.default, headers: nil)
             .responseJSON { response in
                 if let data = response.result.value {

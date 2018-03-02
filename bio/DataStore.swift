@@ -52,7 +52,7 @@ class DataStore {
     }
 
     func requestNotification(forMovie movie: Movie) {
-        Api.createNotification(withDeviceId: getDeviceId(), imdbId: movie.imdbId) { movies in
+        Api.createNotification(withDeviceId: getDeviceId(), imdbId: movie.imdbId, expectedDate: movie.releaseDate) { movies in
             self.upcoming.accept(movies)
         }
     }

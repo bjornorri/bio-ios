@@ -80,6 +80,12 @@ extension Date {
         return formatter.string(from: self)
     }
 
+    func dateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM-dd"
+        return formatter.string(from: self)
+    }
+
     func isPast() -> Bool {
         return self.compare(Date()) == .orderedAscending
     }
