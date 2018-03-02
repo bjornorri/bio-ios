@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setRootViewController()
         Fabric.with([Crashlytics.self])
+        NotificationManager.shared.setup()
         DataStore.shared.fetchData()
         if UIApplication.shared.isRegisteredForRemoteNotifications {
             NotificationManager.shared.registerForPushNotifications()

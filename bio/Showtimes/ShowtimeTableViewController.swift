@@ -72,7 +72,7 @@ class ShowtimeTableViewController: FadeTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let movies = DataStore.shared.showtimes.value else { return }
         let detailVC = ShowtimeDetailViewController()
-        detailVC.movie = movies[indexPath.row]
+        detailVC.imdbId = movies[indexPath.row].imdbId
         show(detailVC, sender: nil)
     }
 }
@@ -84,7 +84,7 @@ extension ShowtimeTableViewController: UIViewControllerPreviewingDelegate {
         let movie = DataStore.shared.showtimes.value?[indexPath.row] else { return nil }
         previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
         let detailVC = ShowtimeDetailViewController()
-        detailVC.movie = movie
+        detailVC.imdbId = movie.imdbId
         return detailVC
     }
 

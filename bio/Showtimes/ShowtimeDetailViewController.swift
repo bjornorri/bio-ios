@@ -8,10 +8,16 @@
 
 import UIKit
 import SafariServices
+import RxSwift
 
 class ShowtimeDetailViewController: FadeTableViewController {
 
-    var movie: Movie!
+    let disposeBag = DisposeBag()
+
+    var imdbId: String!
+    var movie: Movie? {
+        return DataStore.shared.showtimes.value?.first(where: { $0.imdbId == self.imdbId })
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +29,13 @@ class ShowtimeDetailViewController: FadeTableViewController {
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
-        displayMovie()
+        listenToUpdates()
+    }
+
+    private func listenToUpdates() {
+        DataStore.shared.showtimes.asObservable().subscribe(onNext: { movies in
+            self.displayMovie()
+        }).disposed(by: disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +45,7 @@ class ShowtimeDetailViewController: FadeTableViewController {
     }
 
     func displayMovie() {
+        guard let movie = movie else { return }
         // Navigation title
         title = movie.title
 
@@ -59,7 +72,7 @@ class ShowtimeDetailViewController: FadeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = movie.showtimes?.count {
+        if let count = movie?.showtimes?.count {
             return count * 2
         }
         return 0
@@ -75,7 +88,7 @@ class ShowtimeDetailViewController: FadeTableViewController {
 
     private func dequeueHeader(at indexPath: IndexPath) -> UITableViewCell {
         let index = indexPath.row / 2
-        guard let schedule = movie.showtimes?[index] else { return UITableViewCell(frame: CGRect.zero) }
+        guard let schedule = movie?.showtimes?[index] else { return UITableViewCell(frame: CGRect.zero) }
         let header = tableView.dequeueReusableCell(withIdentifier: "cinemaHeader", for: indexPath) as! CinemaHeader
         header.schedule = schedule
         return header
@@ -83,7 +96,7 @@ class ShowtimeDetailViewController: FadeTableViewController {
 
     private func dequeueCell(at indexPath: IndexPath) -> UITableViewCell {
         let index = (indexPath.row - 1) / 2
-        guard let schedule = movie.showtimes?[index] else { return UITableViewCell(frame: CGRect.zero) }
+        guard let schedule = movie?.showtimes?[index] else { return UITableViewCell(frame: CGRect.zero) }
         let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath) as! ScheduleCell
         cell.schedule = schedule
         cell.delegate = self

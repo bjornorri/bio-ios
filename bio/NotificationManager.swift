@@ -9,13 +9,14 @@
 import UIKit
 import UserNotifications
 
-class NotificationManager {
+class NotificationManager: NSObject {
 
     static let shared = NotificationManager()
 
     private var token: String?
 
-    init() {
+    func setup() {
+        UNUserNotificationCenter.current().delegate = self
         NotificationCenter.default.addObserver(forName: .UIApplicationDidBecomeActive, object: nil, queue: nil, using: { notification in
             self.sendToken()
             UIApplication.shared.applicationIconBadgeNumber = 0
@@ -55,5 +56,19 @@ class NotificationManager {
     func sendToken() {
         guard let token = token else { return }
         Api.registerDevice(withId: getDeviceId(), apnsToken: token)
+    }
+}
+
+extension NotificationManager: UNUserNotificationCenterDelegate {
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if let link = response.notification.request.content.userInfo["link"] as? String {
+            print("Got deep link \(link)")
+        }
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
     }
 }
