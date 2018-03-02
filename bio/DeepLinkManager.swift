@@ -37,8 +37,10 @@ class DeepLinkManager {
     private func pushDetailVC(withImdbId imdbId: String) {
         guard let window = UIApplication.shared.keyWindow,
         let tabVC = window.rootViewController as? UITabBarController,
-        let navVC = tabVC.selectedViewController as? UINavigationController,
-        let currentVC = navVC.visibleViewController else { return }
+        let navVC = tabVC.selectedViewController as? UINavigationController else { return }
+
+        navVC.popToRootViewController(animated: false)
+        guard let currentVC = navVC.visibleViewController else { return }
 
         let detailVC = ShowtimeDetailViewController()
         detailVC.imdbId = imdbId
