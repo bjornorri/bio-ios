@@ -33,6 +33,7 @@
 		98BDA58C20078FE900A26A40 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BDA58B20078FE900A26A40 /* Api.swift */; };
 		98BDA58E2007928F00A26A40 /* ShowtimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BDA58D2007928F00A26A40 /* ShowtimeTableViewController.swift */; };
 		98BDA591200794F900A26A40 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BDA590200794F900A26A40 /* Movie.swift */; };
+		98BEE34420496333007AD053 /* DeepLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BEE34320496333007AD053 /* DeepLinkManager.swift */; };
 		98E68B3A2007899900C55173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E68B392007899900C55173 /* AppDelegate.swift */; };
 		98E68B412007899900C55173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98E68B402007899900C55173 /* Assets.xcassets */; };
 		98E68B442007899900C55173 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98E68B422007899900C55173 /* LaunchScreen.storyboard */; };
@@ -68,6 +69,7 @@
 		98BDA58B20078FE900A26A40 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		98BDA58D2007928F00A26A40 /* ShowtimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowtimeTableViewController.swift; sourceTree = "<group>"; };
 		98BDA590200794F900A26A40 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		98BEE34320496333007AD053 /* DeepLinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkManager.swift; sourceTree = "<group>"; };
 		98E68B362007899900C55173 /* bio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E68B392007899900C55173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98E68B402007899900C55173 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				98BDA58B20078FE900A26A40 /* Api.swift */,
 				981F04F8203C883E004944B6 /* DataStore.swift */,
 				98E947D62035E44700AB7234 /* NotificationManager.swift */,
+				98BEE34320496333007AD053 /* DeepLinkManager.swift */,
 				98BCEED32007CF420014A521 /* Extensions.swift */,
 				989824B52033126F00248F87 /* Utils.swift */,
 				9873FF5B203B26CA00E49E18 /* TabBarController.swift */,
@@ -394,6 +397,7 @@
 				98BDA58C20078FE900A26A40 /* Api.swift in Sources */,
 				98BDA591200794F900A26A40 /* Movie.swift in Sources */,
 				981F04F9203C883E004944B6 /* DataStore.swift in Sources */,
+				98BEE34420496333007AD053 /* DeepLinkManager.swift in Sources */,
 				983AF2A32037C9BB00F88A69 /* GradientView.swift in Sources */,
 				989DCC962020BED5003E020C /* IMDbRatingView.swift in Sources */,
 				989824B62033126F00248F87 /* Utils.swift in Sources */,

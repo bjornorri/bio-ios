@@ -63,7 +63,7 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if let link = response.notification.request.content.userInfo["link"] as? String {
-            print("Got deep link \(link)")
+            DeepLinkManager.shared.openLink(link)
         }
         completionHandler()
     }
