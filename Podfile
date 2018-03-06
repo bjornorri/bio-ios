@@ -17,5 +17,7 @@ target 'bio' do
   pod 'SnapKit', '~> 4.0'
   pod 'SwiftyJSON'
   pod 'XCDYouTubeKit', '~> 2.5'
+  
+  pod 'SimulatorStatusMagic', :configurations => ['Debug']
 
 end

@@ -9,6 +9,7 @@ PODS:
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
+  - SimulatorStatusMagic (2.1)
   - SnapKit (4.0.0)
   - SwiftyJSON (4.0.0)
   - XCDYouTubeKit (2.5.6)
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - MMParallaxCell
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
+  - SimulatorStatusMagic
   - SnapKit (~> 4.0)
   - SwiftyJSON
   - XCDYouTubeKit (~> 2.5)
@@ -35,10 +37,11 @@ SPEC CHECKSUMS:
   MMParallaxCell: 9c9045097743b725076c38ed2c53e3790e90bd14
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
+  SimulatorStatusMagic: 481558caf2b9ccb2ceba2cc193728d4db3dcac07
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   XCDYouTubeKit: dccfe0c17dd5c5187969ec27e93069573badb08f
 
-PODFILE CHECKSUM: 7c4c3ac530b47ab75f3f579e969be8778984c033
+PODFILE CHECKSUM: f90e3b6d8f6047b5a0e2e4dc69a86b2c6bdf512e
 
 COCOAPODS: 1.4.0

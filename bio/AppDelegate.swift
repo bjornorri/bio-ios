@@ -12,12 +12,23 @@ import Crashlytics
 import ionicons
 import RxSwift
 
+#if DEBUG
+    import SimulatorStatusMagic
+#endif
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("-snapshot") {
+                SDStatusBarManager.sharedInstance().enableOverrides()
+            } else {
+                SDStatusBarManager.sharedInstance().disableOverrides()
+            }
+        #endif
         setRootViewController()
         Fabric.with([Crashlytics.self])
         NotificationManager.shared.setup()

@@ -14,3 +14,7 @@ scheme("bioUITests")
 output_directory("./fastlane/screenshots")
 
 clear_previous_screenshots(true)
+
+launch_arguments([
+  "-snapshot"
+])
