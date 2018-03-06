@@ -1,0 +1,61 @@
+{
+  "device_frame_version": "latest",
+  "default": {
+    "keyword": {
+      "fonts": [
+        {
+          "font": "./fonts/Myriad Pro Bold Condensed.ttf"
+        }
+      ],
+      "color": "#545454"
+    },
+    "title": {
+      "fonts": [
+        {
+          "font": "./fonts/Myriad Pro Bold Condensed.ttf"
+        }
+      ],
+      "color": "#545454"
+    },
+    "background": "./background.png",
+    "padding": 50,
+    "stack_title": false,
+    "show_complete_frame": false,
+    "title_below_image": false
+  },
+
+
+  "data": [
+    {
+      "filter": "showtimes",
+      "keyword": {
+          "text": "Sjáðu",
+          "color": "#d21559"
+      },
+      "title": {
+          "text": "hvað er í bíó"
+      }
+    },
+    {
+      "filter": "detail",
+      "keyword": {
+          "text": "Kauptu miða",
+          "color": "#31bb48"
+      },
+      "title": {
+          "text": "á sýninguna þína"
+      }
+    },
+    {
+      "filter": "upcoming",
+      "keyword": {
+          "text": "Við látum þig vita",
+          "color": "#feb909"
+      },
+      "title": {
+          "text": "þegar myndin þín kemur í bíó"
+      }
+    }
+  ]
+}
+
