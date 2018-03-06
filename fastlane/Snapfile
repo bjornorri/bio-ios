@@ -1,0 +1,16 @@
+devices([
+  "iPhone X",
+  "iPhone 8",
+  "iPhone 8 Plus",
+  "iPhone 5s"
+])
+
+languages([
+  "is-IS"
+])
+
+scheme("bioUITests")
+
+output_directory("./fastlane/screenshots")
+
+clear_previous_screenshots(true)
