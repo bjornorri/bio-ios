@@ -6,7 +6,7 @@ devices([
 ])
 
 languages([
-  "is-IS"
+  "en-US"
 ])
 
 scheme("bioUITests")

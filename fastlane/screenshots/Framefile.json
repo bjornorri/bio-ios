@@ -4,7 +4,7 @@
     "keyword": {
       "fonts": [
         {
-          "font": "./fonts/Myriad Pro Bold Condensed.ttf"
+          "font": "./Myriad Pro Bold Condensed.ttf"
         }
       ],
       "color": "#545454"
@@ -12,7 +12,7 @@
     "title": {
       "fonts": [
         {
-          "font": "./fonts/Myriad Pro Bold Condensed.ttf"
+          "font": "./Myriad Pro Bold Condensed.ttf"
         }
       ],
       "color": "#545454"
