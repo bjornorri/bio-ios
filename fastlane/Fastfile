@@ -9,13 +9,34 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+USERNAME = "bjornorri@gmail.com"
+
 default_platform(:ios)
 
 platform :ios do
-  desc "Generate new localized screenshots"
-  lane :screenshots do
-    capture_screenshots(workspace: "bio.xcworkspace", scheme: "bioUITests")
-    frame_screenshots(white: false)
-    upload_to_app_store(username: "bjornorri@gmail.com")
-  end
+    desc "Generate new localized screenshots"
+    lane :screenshots do
+        capture_screenshots(scheme: "bioUITests")
+        frame_screenshots(white: false)
+    end
+
+    desc "Release to Test Flight"
+    lane :beta do
+        ensure_git_status_clean
+        get_certificates(username: USERNAME, output_path: "./fastlane/certificates")
+        get_provisioning_profile(username: USERNAME, output_path: "./fastlane/certificates")
+        build_app(scheme: "bio", output_directory: "./fastlane/build")
+        upload_to_testflight(username: USERNAME)
+    end
+
+    desc "Release to App Store"
+    lane :release do
+        ensure_git_status_clean
+        capture_screenshots(scheme: "bioUITests")
+        frame_screenshots
+        get_certificates(username: USERNAME, output_path: "./fastlane/certificates")
+        get_provisioning_profile(username: USERNAME, output_path: "./fastlane/certificates")
+        build_app(scheme: "bio", output_directory: "./fastlane/build")
+        upload_to_app_store(username: USERNAME)
+    end
 end

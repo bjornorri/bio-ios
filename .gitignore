@@ -122,3 +122,9 @@ fastlane/screenshots/screenshots.html
 fastlane/test_output
 
 # End of https://www.gitignore.io/api/fastlane
+
+# Fastlane certificates and profiles.
+
+fastlane/certificates/
+fastlane/build/
+Preview.html
